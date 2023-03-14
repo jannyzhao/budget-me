@@ -2,4 +2,5 @@
 
 ## Collaborators
 
-- Janny
+- Janny Zhao
+- Anne Clarin
