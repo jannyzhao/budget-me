@@ -1,1 +1,5 @@
 # budget-me
+
+## Collaborators
+
+- Janny
