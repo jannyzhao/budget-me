@@ -18,10 +18,15 @@ passport.use(
       const user = await User.findOne({ email });
       if (user) {
         bcrypt.compare(password, user.hashedPassword, (err, isMatch) => {
-          if (err || !isMatch) done(null, false);
-          else done(null, user);
+          if (err || !isMatch) {
+            done(null, false);
+          } else {
+            done(null, user);
+          }
         });
-      } else done(null, false);
+      } else {
+        done(null, false);
+      }
     }
   )
 );

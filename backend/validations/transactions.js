@@ -1,6 +1,20 @@
 const { check } = require("express-validator");
 const handleValidationErrors = require("./handleValidationErrors");
 
+const CATEGORIES = [
+  "paycheck",
+  "saving",
+  "car",
+  "groceries",
+  "insurance",
+  "subscription",
+  "miscellaneous",
+  "entertainment",
+  "dining out",
+  "rent/mortgage",
+  "household",
+];
+
 const validateTransactionInput = [
   check("date")
     .exists({ checkFalsy: true })
@@ -22,19 +36,7 @@ const validateTransactionInput = [
     .withMessage("Please select one of the options listed"),
   check("category")
     .exists({ checkFalsy: true })
-    .contains(
-      "paycheck",
-      "saving",
-      "car",
-      "groceries",
-      "insurance",
-      "subscription",
-      "miscellaneous",
-      "entertainment",
-      "dining out",
-      "rent/mortgage",
-      "household"
-    )
+    .contains(...CATEGORIES)
     .withMessage("Please select one of the options listed"),
   check("amount")
     .exists({ checkFalsy: true })
