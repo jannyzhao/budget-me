@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "dotenv-cli": "^7.1.0",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "prettier": "2.8.4"
   }
 }
