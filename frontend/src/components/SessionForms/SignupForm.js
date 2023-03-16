@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import "./SessionForm.css";
 import { signup, clearSessionErrors } from "../../store/session";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -55,49 +54,45 @@ function SignupForm() {
 
   return (
     <Container>
-      <Form className="session-form" onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <h2>Sign Up Form</h2>
-        <div className="errors">{errors?.email}</div>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
+          <Form.Control>
+            type="email" value={email}
             onChange={update("email")}
             placeholder="Email"
-          />
+            <Form.Text className="errors">{errors?.email}</Form.Text>
+          </Form.Control>
         </Form.Group>
-        <div className="errors">{errors?.username}</div>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            value={username}
+          <Form.Control>
+            type="text" value={username}
             onChange={update("username")}
             placeholder="Username"
-          />
+            <Form.Text className="errors">{errors?.username}</Form.Text>
+          </Form.Control>
         </Form.Group>
-        <div className="errors">{errors?.password}</div>
         <Form.Group>
           <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
+          <Form.Control>
+            type="password" value={password}
             onChange={update("password")}
             placeholder="Password"
-          />
+            <Form.Text className="errors">{errors?.password}</Form.Text>
+          </Form.Control>
         </Form.Group>
-        <div className="errors">
-          {password !== password2 && "Confirm Password field must match"}
-        </div>
         <Form.Group>
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password2}
+          <Form.Control>
+            type="password" value={password2}
             onChange={update("password2")}
             placeholder="Confirm Password"
-          />
+            <Form.Text className="errors">
+              {password !== password2 && "Confirm Password field must match"}
+            </Form.Text>
+          </Form.Control>
         </Form.Group>
         <Button
           variant="primary"
