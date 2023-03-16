@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import NavBar from "./components/NavBar/NavBar";
@@ -11,6 +11,7 @@ import SignupForm from "./components/SessionForms/SignupForm";
 
 import { getCurrentUser } from "./store/session";
 import "bootswatch/dist/litera/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
       <>
         <NavBar />
         <Switch>
-          <AuthRoute exact path="/" component={MainPage} />
+
+          <Route exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
         </Switch>

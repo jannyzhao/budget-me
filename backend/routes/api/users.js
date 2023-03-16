@@ -9,11 +9,27 @@ const { isProduction } = require("../../config/keys");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.json({
-    message: "GET /api/users",
-  });
+router.get("/", async (req, res) => {
+  const users = await User.find({});
+  if (!users) {
+    return res.status(404).json({ error: "No such user found" });
+  }
+
+  res.status(200).json(users);
+});
+
+router.get("/current", restoreUser, (req, res) => {
+  if (!isProduction) {
+    // In development, allow React server to gain access to the CSRF token
+    // whenever the current user information is first loaded into the
+    // React application
+
+    const csrfToken = req.csrfToken();
+    res.cookie("CSRF-TOKEN", csrfToken);
+  }
+  if (!req.user) return res.json(null);
+  const user = req.user;
+  res.status(200).json({ user });
 });
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
@@ -24,7 +40,7 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
   });
 
   if (user) {
-    // Throw a 400 error if the email address and/or username already exists
+    // Throw a 400 error if the email address and/or email already exists
     const err = new Error("Validation Error");
     err.statusCode = 400;
     const errors = {};
@@ -69,22 +85,6 @@ router.post("/login", validateLoginInput, async (req, res, next) => {
     }
     return res.json(await loginUser(user));
   })(req, res, next);
-});
-
-router.get("/current", restoreUser, (req, res) => {
-  if (!isProduction) {
-    // In development, allow React server to gain access to the CSRF token
-    // whenever the current user information is first loaded into the
-    // React application
-    const csrfToken = req.csrfToken();
-    res.cookie("CSRF-TOKEN", csrfToken);
-  }
-  if (!req.user) return res.json(null);
-  res.json({
-    _id: req.user._id,
-    username: req.user.username,
-    email: req.user.email,
-  });
 });
 
 module.exports = router;

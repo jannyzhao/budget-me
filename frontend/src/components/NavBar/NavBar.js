@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 
 function NavBar() {
-  const loggedIn = useSelector((state) => !!state.session.user);
+  const loggedIn = useSelector((state) => {
+    return !!state.session.user;
+  });
+
   const dispatch = useDispatch();
 
   const logoutUser = (e) => {

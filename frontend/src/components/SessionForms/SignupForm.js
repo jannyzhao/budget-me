@@ -101,6 +101,8 @@ function SignupForm() {
         value="Sign Up"
         disabled={!email || !username || !password || password !== password2}
       />
+
+      
     </form>
   );
 }
