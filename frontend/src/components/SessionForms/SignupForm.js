@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import "./SessionForm.css";
 import { signup, clearSessionErrors } from "../../store/session";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function SignupForm() {
   const [email, setEmail] = useState("");
@@ -52,58 +54,61 @@ function SignupForm() {
   };
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Sign Up Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input
-          type="text"
-          value={email}
-          onChange={update("email")}
-          placeholder="Email"
-        />
-      </label>
-      <div className="errors">{errors?.username}</div>
-      <label>
-        <span>Username</span>
-        <input
-          type="text"
-          value={username}
-          onChange={update("username")}
-          placeholder="Username"
-        />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input
-          type="password"
-          value={password}
-          onChange={update("password")}
-          placeholder="Password"
-        />
-      </label>
-      <div className="errors">
-        {password !== password2 && "Confirm Password field must match"}
-      </div>
-      <label>
-        <span>Confirm Password</span>
-        <input
-          type="password"
-          value={password2}
-          onChange={update("password2")}
-          placeholder="Confirm Password"
-        />
-      </label>
-      <input
-        type="submit"
-        value="Sign Up"
-        disabled={!email || !username || !password || password !== password2}
-      />
-
-      
-    </form>
+    <Container>
+      <Form className="session-form" onSubmit={handleSubmit}>
+        <h2>Sign Up Form</h2>
+        <div className="errors">{errors?.email}</div>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={update("email")}
+            placeholder="Email"
+          />
+        </Form.Group>
+        <div className="errors">{errors?.username}</div>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={update("username")}
+            placeholder="Username"
+          />
+        </Form.Group>
+        <div className="errors">{errors?.password}</div>
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={update("password")}
+            placeholder="Password"
+          />
+        </Form.Group>
+        <div className="errors">
+          {password !== password2 && "Confirm Password field must match"}
+        </div>
+        <Form.Group>
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            value={password2}
+            onChange={update("password2")}
+            placeholder="Confirm Password"
+          />
+        </Form.Group>
+        <Button
+          variant="primary"
+          type="submit"
+          value="Sign Up"
+          disabled={!email || !username || !password || password !== password2}
+        >
+          Submit
+        </Button>
+      </Form>
+    </Container>
   );
 }
 
