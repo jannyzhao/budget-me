@@ -23,7 +23,6 @@ export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
 });
 
-
 export const signup = (user) => startSession(user, "api/users/register");
 export const login = (user) => startSession(user, "api/users/login");
 
@@ -35,6 +34,7 @@ const startSession = (userInfo, route) => async (dispatch) => {
     });
     const { user, token } = await res.json();
     localStorage.setItem("jwtToken", token);
+    console.log("user", user);
     return dispatch(receiveCurrentUser(user));
   } catch (err) {
     const res = await err.json();
@@ -76,6 +76,12 @@ export const sessionErrorsReducer = (state = nullErrors, action) => {
     default:
       return state;
   }
+};
+
+export const getCurrentUser = () => async (dispatch) => {
+  const res = await jwtFetch("/api/users/current");
+  const user = await res.json();
+  return dispatch(receiveCurrentUser(user));
 };
 
 export default sessionReducer;

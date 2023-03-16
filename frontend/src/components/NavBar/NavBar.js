@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import "./NavBar.css";
+// import "./NavBar.css";
 import { logout } from "../../store/session";
 
 function NavBar() {
@@ -16,7 +16,7 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <Link to={"/transactions"}>All Tweets</Link>
+          <Link to={"/transactions"}>All Transactions</Link>
           <Link to={"/profile"}>Profile</Link>
           <Link to={"/transactions/new"}>Add a new transaction</Link>
           <button onClick={logoutUser}>Logout</button>
