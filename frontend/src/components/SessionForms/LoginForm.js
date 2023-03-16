@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import "./SessionForm.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // import "./NavBar.css";
 import { logout } from "../../store/session";
+import Navbar from "react-bootstrap/Navbar";
 
 function NavBar() {
   const loggedIn = useSelector((state) => {
