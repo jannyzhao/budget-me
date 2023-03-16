@@ -23,17 +23,15 @@ function LoginForm() {
     return (e) => setState(e.currentTarget.value);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(login({ email, password }));
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login({ email, password }));
+  };
 
   return (
     <Container fluid="sm">
-      {/* <form className="session-form" onSubmit={handleSubmit}> */}
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <h2>Log In</h2>
-        <div className="errors">{errors?.email}</div>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
 
@@ -43,12 +41,15 @@ function LoginForm() {
             value={email}
             onChange={update("email")}
           />
+          {errors?.email ? (
+            <Form.Text className="errors">{errors?.email}</Form.Text>
+          ) : null}
+
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
 
-        <div className="errors">{errors?.password}</div>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
 
@@ -58,11 +59,11 @@ function LoginForm() {
             value={password}
             onChange={update("password")}
           />
+          {errors?.password ? (
+            <Form.Text className="errors">{errors?.password}</Form.Text>
+          ) : null}
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Save Password" />
-        </Form.Group>
         <Button type="submit" disabled={!email || !password} variant="primary">
           Login
         </Button>
