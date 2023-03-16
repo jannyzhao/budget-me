@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import "./SessionForm.css";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+
 
 import { login, clearSessionErrors } from "../../store/session";
 
@@ -27,6 +29,7 @@ function LoginForm() {
   };
 
   return (
+    <Container fluid="md">
     <form className="session-form" onSubmit={handleSubmit}>
       <h2>Log In</h2>
       <div className="errors">{errors?.email}</div>
@@ -49,8 +52,11 @@ function LoginForm() {
           placeholder="Password"
         />
       </label>
-      <input type="submit" value="Log In" disabled={!email || !password} />
+      <Button type="submit" disabled={!email || !password} variant="primary">
+        Login
+      </Button>
     </form>
+    </Container>
   );
 }
 

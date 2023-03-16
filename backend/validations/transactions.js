@@ -45,4 +45,4 @@ const validateTransactionInput = [
   handleValidationErrors,
 ];
 
-module.exports = validateTweetInput;
+module.exports = validateTransactionInput;
