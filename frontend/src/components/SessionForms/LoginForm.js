@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-
+import Form from "react-bootstrap/Form";
 
 import { login, clearSessionErrors } from "../../store/session";
 
@@ -23,39 +23,50 @@ function LoginForm() {
     return (e) => setState(e.currentTarget.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(login({ email, password }));
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(login({ email, password }));
+  // };
 
   return (
-    <Container fluid="md">
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input
-          type="text"
-          value={email}
-          onChange={update("email")}
-          placeholder="Email"
-        />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input
-          type="password"
-          value={password}
-          onChange={update("password")}
-          placeholder="Password"
-        />
-      </label>
-      <Button type="submit" disabled={!email || !password} variant="primary">
-        Login
-      </Button>
-    </form>
+    <Container fluid="sm">
+      {/* <form className="session-form" onSubmit={handleSubmit}> */}
+      <Form>
+        <h2>Log In</h2>
+        <div className="errors">{errors?.email}</div>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+
+          <Form.Control
+            type="email"
+            placeholder="demo@user.io"
+            value={email}
+            onChange={update("email")}
+          />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <div className="errors">{errors?.password}</div>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+
+          <Form.Control
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={update("password")}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Save Password" />
+        </Form.Group>
+        <Button type="submit" disabled={!email || !password} variant="primary">
+          Login
+        </Button>
+      </Form>
     </Container>
   );
 }
