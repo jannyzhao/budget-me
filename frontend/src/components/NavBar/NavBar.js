@@ -7,7 +7,6 @@ import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
 
 function NavBar() {
   const loggedIn = useSelector((state) => {
@@ -26,7 +25,7 @@ function NavBar() {
       return (
         <Navbar bg="light" expand="lg">
           <Container fluid>
-            <Navbar.Brand href="#">BudgetMe</Navbar.Brand>
+            <Navbar.Brand href={"/"}>BudgetMe</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
@@ -36,7 +35,7 @@ function NavBar() {
               >
                 <Nav.Link href={"/"}>Home</Nav.Link>
                 <Nav.Link href={"/transactions"}>All Transactions</Nav.Link>
-                <NavDropdown title="Link" id="navbarScrollingDropdown">
+                <NavDropdown title="Menu" id="navbarScrollingDropdown">
                   <NavDropdown.Item href={"/profile"}>Profile</NavDropdown.Item>
                   <NavDropdown.Item href={"/transactions/new"}>
                     Add New Transaction
@@ -63,17 +62,29 @@ function NavBar() {
       );
     } else {
       return (
-        <div className="links-auth">
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
-        </div>
+        <Navbar bg="light" expand="lg">
+          <Container fluid>
+            <Navbar.Brand href={"/"}>BudgetMe</Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+              <Nav
+                className="d-flex"
+                style={{ maxHeight: "100px" }}
+                navbarScroll
+              >
+                <Nav.Link href={"/"}>Home</Nav.Link>
+                <Nav.Link href={"/login"}>Login</Nav.Link>
+                <Nav.Link href={"/signup"}>Signup</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       );
     }
   };
-  
+
   return (
     <>
-      {/* <h1>Budget Me</h1> */}
       {getLinks()}
     </>
   );
