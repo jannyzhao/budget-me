@@ -64,7 +64,11 @@ function LoginForm() {
           ) : null}
         </Form.Group>
 
-        <Button type="submit" disabled={!email || !password} variant="primary">
+        <Button
+          type="submit"
+          disabled={!email || !password}
+          variant="btn btn-success"
+        >
           Login
         </Button>
       </Form>
