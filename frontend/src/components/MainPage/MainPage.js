@@ -1,10 +1,8 @@
+import React from "react";
+import TransactionsTable from "../TransactionTable/TransactionTable";
+
 function MainPage() {
-  return (
-    <>
-      <p>Budget Me</p>
-      <footer>Copyright &copy; 2023</footer>
-    </>
-  );
+  return <TransactionsTable />;
 }
 
 export default MainPage;

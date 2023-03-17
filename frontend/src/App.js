@@ -10,8 +10,8 @@ import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 
 import { getCurrentUser } from "./store/session";
-import "bootswatch/dist/litera/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootswatch/dist/litera/bootstrap.min.css";
 
 
 function App() {
