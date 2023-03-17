@@ -73,7 +73,7 @@ function NavBar() {
                 navbarScroll
               >
                 <Nav.Link href={"/"}>Home</Nav.Link>
-                <Nav.Link href={"/login"}>Login</Nav.Link>
+                <Nav.Link href={"/login"}>Log in</Nav.Link>
                 <Nav.Link href={"/signup"}>Sign up</Nav.Link>
               </Nav>
             </Navbar.Collapse>
