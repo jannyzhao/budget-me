@@ -40,7 +40,7 @@ function TransactionTable() {
           />
         </tbody>
       </Table>
-      <Button variant="btn btn-success">+ Add Transaction</Button>
+      <Button variant="success">+ Add Transaction</Button>
     </Container>
   );
 }

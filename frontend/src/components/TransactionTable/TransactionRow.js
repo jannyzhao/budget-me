@@ -18,16 +18,18 @@ function TransactionRow({ date, company, description, amount }) {
       <td>{date}</td>
       <td>{company}</td>
       <td>{description}</td>
-      <DropdownButton
-        id="type"
-        title={type ? type : "Type"}
-        onSelect={handleType}
-        variant="light"
-      >
-        <Dropdown.Item eventKey="Income">Income</Dropdown.Item>
-        <Dropdown.Item eventKey="Expense">Expense</Dropdown.Item>
-        <Dropdown.Item eventKey="Saving">Saving</Dropdown.Item>
-      </DropdownButton>
+      <td>
+        <DropdownButton
+          id="type"
+          title={type ? type : "Type"}
+          onSelect={handleType}
+          variant="light"
+        >
+          <Dropdown.Item eventKey="Income">Income</Dropdown.Item>
+          <Dropdown.Item eventKey="Expense">Expense</Dropdown.Item>
+          <Dropdown.Item eventKey="Saving">Saving</Dropdown.Item>
+        </DropdownButton>
+      </td>
       <td>
         <DropdownButton
           id="category"
