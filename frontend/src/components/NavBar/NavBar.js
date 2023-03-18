@@ -65,15 +65,10 @@ function NavBar() {
           <Container fluid>
             <Navbar.Brand href={"/"}>BudgetMe</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav
-                className="d-flex"
-                style={{ maxHeight: "100px" }}
-                navbarScroll
-              >
-                <Nav.Link href={"/"}>Home</Nav.Link>
-                <Nav.Link href={"/login"}>Log in</Nav.Link>
+            <Navbar.Collapse className="justify-content-end" id="navbarScroll">
+              <Nav style={{ maxHeight: "100px" }} navbarScroll>
                 <Nav.Link href={"/signup"}>Sign up</Nav.Link>
+                <Nav.Link href={"/login"}>Log in</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -82,11 +77,7 @@ function NavBar() {
     }
   };
 
-  return (
-    <>
-      {getLinks()}
-    </>
-  );
+  return <>{getLinks()}</>;
 }
 
 export default NavBar;
