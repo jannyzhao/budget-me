@@ -6,8 +6,7 @@ import TransactionTable from "../TransactionTable/TransactionTable";
 function MainPage() {
   return (
     <Container>
-      <MonthlyIncome />
-      <br></br>
+      <MonthlyIncome className="mb-4" />
       <TransactionTable />
     </Container>
   );

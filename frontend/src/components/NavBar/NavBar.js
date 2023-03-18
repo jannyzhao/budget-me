@@ -33,7 +33,6 @@ function NavBar() {
                 style={{ maxHeight: "100px" }}
                 navbarScroll
               >
-                <Nav.Link href={"/transactions"}>Home</Nav.Link>
                 <Nav.Link href={"/transactions"}>All Transactions</Nav.Link>
                 <NavDropdown title="Menu" id="navbarScrollingDropdown">
                   <NavDropdown.Item href={"/profile"}>Profile</NavDropdown.Item>
