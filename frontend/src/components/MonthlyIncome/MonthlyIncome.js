@@ -2,13 +2,12 @@ import Card from "react-bootstrap/Card";
 import React from "react";
 import Container from "react-bootstrap/esm/Container";
 
-function MonthlyIncome() {
+function MonthlyIncome({ className }) {
   return (
-    <Container>
+    <Container className={className}>
       <Card
         style={{ width: "15rem" }}
-        border="success"
-        variant="primary"
+        border="secondary"
         className="text-center"
       >
         <Card.Header as="h6">Monthly Income</Card.Header>
