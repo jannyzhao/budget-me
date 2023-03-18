@@ -6,9 +6,11 @@ import AmountSpent from "../AmountSpent/AmountSpent";
 
 function MainPage() {
   return (
-    <Container>
-      <MonthlyIncome className="mb-4" />
-      <AmountSpent className="mb-4" />
+    <Container className="pt-4">
+      <div className="d-flex gap-4">
+        <MonthlyIncome className="pr-4" />
+        <AmountSpent className="mb-4" />
+      </div>
       <TransactionTable />
     </Container>
   );

@@ -4,7 +4,7 @@ import Container from "react-bootstrap/esm/Container";
 
 function MonthlyIncome({ className }) {
   return (
-    <Container className={className}>
+    <div className={className}>
       <Card
         style={{ width: "15rem" }}
         border="secondary"
@@ -24,7 +24,7 @@ function MonthlyIncome({ className }) {
           <Card.Text>$4500.00</Card.Text>
         </Card.Body>
       </Card>
-    </Container>
+    </div>
   );
 }
 

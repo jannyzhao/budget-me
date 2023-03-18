@@ -4,7 +4,7 @@ import Container from "react-bootstrap/esm/Container";
 
 function AmountSpent({ className }) {
   return (
-    <Container className={className}>
+    <div className={className}>
       <Card
         style={{ width: "15rem" }}
         border="secondary"
@@ -16,7 +16,7 @@ function AmountSpent({ className }) {
           <Card.Img
             variant="top"
             src="money.png"
-            style={{ width: "110px", height: "auto" }}
+            style={{ width: "100px", height: "auto" }}
           />
           <Card.Subtitle className="mb-2 text-muted">
             Money Spent in March
@@ -24,7 +24,7 @@ function AmountSpent({ className }) {
           <Card.Text>$180.00</Card.Text>
         </Card.Body>
       </Card>
-    </Container>
+    </div>
   );
 }
 
