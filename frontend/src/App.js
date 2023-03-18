@@ -8,11 +8,11 @@ import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./components/MainPage/MainPage";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
+import SplashPage from "./components/SplashPage/SplashPage";
 
 import { getCurrentUser } from "./store/session";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/litera/bootstrap.min.css";
-
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,8 +26,8 @@ function App() {
       <>
         <NavBar />
         <Switch>
-
-          <Route exact path="/" component={MainPage} />
+          <Route exact path="/" component={SplashPage} />
+          <ProtectedRoute exact path="/transactions" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
         </Switch>

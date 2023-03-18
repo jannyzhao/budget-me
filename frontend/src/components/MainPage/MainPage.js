@@ -1,8 +1,16 @@
 import React from "react";
-import TransactionsTable from "../TransactionTable/TransactionTable";
+import Container from "react-bootstrap/esm/Container";
+import MonthlyIncome from "../MonthlyIncome/MonthlyIncome";
+import TransactionTable from "../TransactionTable/TransactionTable";
 
 function MainPage() {
-  return <TransactionsTable />;
+  return (
+    <Container>
+      <MonthlyIncome />
+      <br></br>
+      <TransactionTable />
+    </Container>
+  );
 }
 
 export default MainPage;
