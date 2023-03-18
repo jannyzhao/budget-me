@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import Nav from "react-bootstrap/Nav";
@@ -7,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import AddTransaction from "../TransactionTable/AddTransaction";
 
 function NavBar() {
   const loggedIn = useSelector((state) => {
@@ -36,10 +36,6 @@ function NavBar() {
                 <Nav.Link href={"/transactions"}>All Transactions</Nav.Link>
                 <NavDropdown title="Menu" id="navbarScrollingDropdown">
                   <NavDropdown.Item href={"/profile"}>Profile</NavDropdown.Item>
-                  <NavDropdown.Item href={"/transactions/new"}>
-                    Add New Transaction
-                  </NavDropdown.Item>
-
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logoutUser}>
                     Logout
