@@ -25,7 +25,7 @@ function NavBar() {
       return (
         <Navbar bg="light" expand="lg">
           <Container fluid>
-            <Navbar.Brand href={"/"}>BudgetMe</Navbar.Brand>
+            <Navbar.Brand href={"/transactions"}>BudgetMe</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
@@ -33,7 +33,7 @@ function NavBar() {
                 style={{ maxHeight: "100px" }}
                 navbarScroll
               >
-                <Nav.Link href={"/"}>Home</Nav.Link>
+                <Nav.Link href={"/transactions"}>Home</Nav.Link>
                 <Nav.Link href={"/transactions"}>All Transactions</Nav.Link>
                 <NavDropdown title="Menu" id="navbarScrollingDropdown">
                   <NavDropdown.Item href={"/profile"}>Profile</NavDropdown.Item>
