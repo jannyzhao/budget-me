@@ -17,10 +17,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/user/:userId", async (req, res, next) => {
+router.get("/user/:user._id", async (req, res, next) => {
   let user;
   try {
-    user = await User.findById(req.params.userId);
+    user = await User.findById(req.params.user._id);
+    console.log(req.params.user._id);
+    console.log(user._id);
   } catch (err) {
     const error = new Error("User not found");
     error.statusCode = 404;

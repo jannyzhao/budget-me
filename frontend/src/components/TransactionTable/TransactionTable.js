@@ -21,43 +21,43 @@ function TransactionTable({ transactions }) {
     return () => dispatch(clearTransactionErrors());
   }, [currentUser, dispatch]);
 
-  if (userTransactions.length === 0) {
-    return (
-      <Container>
-        <div>{currentUser.username} has no Transactions</div>
-        <AddTransaction />
-      </Container>
-    );
-  } else {
-    return (
-      <Container>
-        <Table responsive striped bordered hover>
-          <thead>
-            <tr>
-              <th>DATE</th>
-              <th>COMPANY</th>
-              <th>DESCRIPTION</th>
-              <th>TYPE</th>
-              <th>CATEGORY</th>
-              <th>AMOUNT</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((transaction) => (
-              <TransactionRow
-                date={transaction.date}
-                amount={transaction.amount}
-                company={transaction.company}
-                description={transaction.description}
-                type={transaction.type}
-                category={transaction.category}
-              />
-            ))}
-          </tbody>
-        </Table>
-      </Container>
-    );
-  }
+  // if (userTransactions.length === 0) {
+  //   return (
+  //     <Container>
+  //       <div>{currentUser.username} has no Transactions</div>
+  //     </Container>
+  //   );
+  // } else {
+  return (
+    <Container>
+      <Table responsive striped bordered hover>
+        <thead>
+          <tr>
+            <th>DATE</th>
+            <th>COMPANY</th>
+            <th>DESCRIPTION</th>
+            <th>TYPE</th>
+            <th>CATEGORY</th>
+            <th>AMOUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions?.map((transaction) => (
+            <TransactionRow
+              date={transaction.date}
+              amount={transaction.amount}
+              company={transaction.company}
+              description={transaction.description}
+              type={transaction.type}
+              category={transaction.category}
+            />
+          ))}
+        </tbody>
+      </Table>
+      <AddTransaction />
+    </Container>
+  );
 }
+// }
 
 export default TransactionTable;
