@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { signup, clearSessionErrors } from "../../store/session";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
 
 function SignupForm() {
   const [email, setEmail] = useState("");
@@ -53,47 +54,70 @@ function SignupForm() {
   };
 
   return (
-    <Container>
+    <Container fluid="sm">
       <Form onSubmit={handleSubmit}>
         <h2>Sign Up Form</h2>
+        <Form.Group className="mb-3" controlId="formBasicUsername">
+          <Form.Label>Username</Form.Label>
+
+          <Form.Control
+            type="username"
+            placeholder="Username"
+            value={username}
+            onChange={update("username")}
+          />
+          {errors?.username ? (
+            <Form.Text className="errors">{errors?.username}</Form.Text>
+          ) : null}
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control>
-            type="email" value={email}
-            onChange={update("email")}
+
+          <Form.Control
+            type="email"
             placeholder="Email"
+            value={email}
+            onChange={update("email")}
+          />
+          {errors?.email ? (
             <Form.Text className="errors">{errors?.email}</Form.Text>
-          </Form.Control>
+          ) : null}
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Username</Form.Label>
-          <Form.Control>
-            type="text" value={username}
-            onChange={update("username")}
-            placeholder="Username"
-            <Form.Text className="errors">{errors?.username}</Form.Text>
-          </Form.Control>
-        </Form.Group>
-        <Form.Group>
           <Form.Label>Password</Form.Label>
-          <Form.Control>
-            type="password" value={password}
-            onChange={update("password")}
+
+          <Form.Control
+            type="password"
             placeholder="Password"
+            value={password}
+            onChange={update("password")}
+          />
+          {errors?.password ? (
             <Form.Text className="errors">{errors?.password}</Form.Text>
-          </Form.Control>
+          ) : null}
         </Form.Group>
-        <Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control>
-            type="password" value={password2}
+
+          <Form.Control
+            type="password"
+            value={password2}
             onChange={update("password2")}
             placeholder="Confirm Password"
+          />
+          {errors?.password2 ? (
             <Form.Text className="errors">
               {password !== password2 && "Confirm Password field must match"}
             </Form.Text>
-          </Form.Control>
+          ) : null}
         </Form.Group>
+
         <Button
           variant="primary"
           type="submit"
