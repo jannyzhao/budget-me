@@ -26,7 +26,6 @@ function AddTransaction() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.target.date.value);
     const transaction = {
       date: e.target.date.value,
       amount: e.target.amount.value,
@@ -35,7 +34,6 @@ function AddTransaction() {
       type,
       category,
     };
-    console.log(transaction);
     dispatch(composeTransaction(transaction));
     handleClose();
   };
