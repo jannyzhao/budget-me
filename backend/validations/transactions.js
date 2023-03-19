@@ -2,18 +2,21 @@ const { check } = require("express-validator");
 const handleValidationErrors = require("./handleValidationErrors");
 
 const CATEGORIES = [
-  "paycheck",
-  "saving",
-  "car",
-  "groceries",
-  "insurance",
-  "subscription",
-  "miscellaneous",
-  "entertainment",
-  "dining out",
-  "rent/mortgage",
-  "household",
+  "Paycheck",
+  "Saving",
+  "Car",
+  "Groceries",
+  "Insurance",
+  "Subscription",
+  "Miscellaneous",
+  "Entertainment",
+  "Rent/Mortgage",
+  "Household",
+  "Food",
+  "Clothing",
 ];
+
+const TYPES = ["Income", "Expense", "Saving"];
 
 const validateTransactionInput = [
   check("date")
@@ -32,15 +35,15 @@ const validateTransactionInput = [
     .withMessage("Optional description must be between 2 and 140 characters"),
   check("type")
     .exists({ checkFalsy: true })
-    .contains("income", "expense", "saving")
+    .isIn(TYPES)
     .withMessage("Please select one of the options listed"),
   check("category")
     .exists({ checkFalsy: true })
-    .contains(...CATEGORIES)
+    .isIn(CATEGORIES)
     .withMessage("Please select one of the options listed"),
   check("amount")
     .exists({ checkFalsy: true })
-    .matches(/^\$(\d{1, 3}(\, \d{3})*|(\d+))(\.\d{2})?$/)
+    .matches(/^(\d{1, 3}(\, \d{3})*|(\d+))(\.\d{2})?$/)
     .withMessage("Amount should resemble $10.50"),
   handleValidationErrors,
 ];
