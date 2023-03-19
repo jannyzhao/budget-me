@@ -76,16 +76,13 @@ function SignupForm() {
 
           <Form.Control
             type="email"
-            placeholder="Email"
+            placeholder="demo@user.io"
             value={email}
             onChange={update("email")}
           />
           {errors?.email ? (
             <Form.Text className="errors">{errors?.email}</Form.Text>
           ) : null}
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -119,7 +116,7 @@ function SignupForm() {
         </Form.Group>
 
         <Button
-          variant="primary"
+          variant="success"
           type="submit"
           value="Sign Up"
           disabled={!email || !username || !password || password !== password2}
