@@ -59,7 +59,12 @@ router.post(
   async (req, res, next) => {
     try {
       const newTransaction = new Transaction({
-        text: req.body.text,
+        date: req.body.date,
+        company: req.body.company,
+        description: req.body.description,
+        type: req.body.type,
+        category: req.body.category,
+        amount: req.body.amount,
         user: req.user._id,
       });
 

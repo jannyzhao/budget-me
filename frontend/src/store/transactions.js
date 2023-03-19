@@ -61,7 +61,7 @@ export const fetchUserTransactions = (id) => async (dispatch) => {
 
 export const composeTransaction = (data) => async (dispatch) => {
   try {
-    const res = await jwtFetch("/api/transactions/", {
+    const res = await jwtFetch("/api/transactions", {
       method: "POST",
       body: JSON.stringify(data),
     });
