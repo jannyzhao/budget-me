@@ -59,7 +59,7 @@ export const fetchUserTransactions = (id) => async (dispatch) => {
   }
 };
 
-export const compooseTransaction = (data) => async (dispatch) => {
+export const composeTransaction = (data) => async (dispatch) => {
   try {
     const res = await jwtFetch("/api/transactions/", {
       method: "POST",
