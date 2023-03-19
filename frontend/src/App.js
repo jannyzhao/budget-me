@@ -27,9 +27,10 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={SplashPage} />
-          <ProtectedRoute exact path="/transactions" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
+          
+          <ProtectedRoute exact path="/transactions" component={MainPage} />
         </Switch>
       </>
     )

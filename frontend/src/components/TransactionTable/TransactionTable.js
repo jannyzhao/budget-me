@@ -3,6 +3,8 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import TransactionRow from "./TransactionRow";
+import AddTransaction from "./AddTransaction";
+
 
 function TransactionTable() {
 
@@ -40,7 +42,7 @@ function TransactionTable() {
           />
         </tbody>
       </Table>
-      <Button variant="success">+ Add Transaction</Button>
+      < AddTransaction />
     </Container>
   );
 }
