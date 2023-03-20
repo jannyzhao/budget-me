@@ -29,7 +29,7 @@ router.get("/current", restoreUser, (req, res) => {
   }
   if (!req.user) return res.json(null);
   const user = req.user;
-  res.status(200).json({ user });
+  res.status(200).json(user);
 });
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {

@@ -2,9 +2,16 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import React, { useState } from "react";
 
-function TransactionRow({ date, company, description, amount }) {
-  const [type, setType] = useState();
-  const [category, setCategory] = useState();
+function TransactionRow({
+  date,
+  company,
+  description,
+  amount,
+  type: initialType,
+  category: initialCategory,
+}) {
+  const [type, setType] = useState(initialType);
+  const [category, setCategory] = useState(initialCategory);
 
   const handleType = (e) => {
     setType(e);

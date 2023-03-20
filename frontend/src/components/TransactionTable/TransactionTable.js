@@ -1,13 +1,20 @@
 import Table from "react-bootstrap/Table";
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import TransactionRow from "./TransactionRow";
 import AddTransaction from "./AddTransaction";
+import { useSelector } from "react-redux";
 
+function TransactionTable({ transactions }) {
+  const currentUser = useSelector((state) => state.session.user);
 
-function TransactionTable() {
-
+  if (transactions.length === 0) {
+    return (
+      <Container>
+        <div>{currentUser.username} has no Transactions</div>
+      </Container>
+    );
+  }
   return (
     <Container>
       <Table responsive striped bordered hover>
@@ -22,29 +29,23 @@ function TransactionTable() {
           </tr>
         </thead>
         <tbody>
-          <TransactionRow
-            date="03/15/2023"
-            company="NIKE"
-            description="Shoes"
-            amount="$150.00"
-          />
-          <TransactionRow
-            date="03/17/2023"
-            company="DOORDASH"
-            description="Marufuku"
-            amount="$30.00"
-          />
-          <TransactionRow
-            date="03/19/2023"
-            company="META"
-            description="Direct Deposit"
-            amount="$4000.00"
-          />
+          {transactions?.map((transaction) => (
+            <TransactionRow
+              date={transaction.date}
+              amount={transaction.amount}
+              company={transaction.company}
+              description={transaction.description}
+              type={transaction.type}
+              category={transaction.category}
+              key={transaction._id}
+            />
+          ))}
         </tbody>
       </Table>
-      < AddTransaction />
+      <AddTransaction />
     </Container>
   );
 }
+// }
 
 export default TransactionTable;
