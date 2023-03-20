@@ -98,7 +98,11 @@ const transactionsReducer = (
     case RECEIVE_USER_TRANSACTIONS:
       return { ...state, user: action.transactions, new: undefined };
     case RECEIVE_NEW_TRANSACTION:
-      return { ...state, new: action.transaction };
+      return {
+        ...state,
+        user: [action.transaction, ...state.user],
+        new: action.transaction,
+      };
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined };
     default:

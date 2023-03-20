@@ -34,6 +34,7 @@ const startSession = (userInfo, route) => async (dispatch) => {
     });
     const { user, token } = await res.json();
     localStorage.setItem("jwtToken", token);
+    console.log("Start Session", user);
     return dispatch(receiveCurrentUser(user));
   } catch (err) {
     const res = await err.json();
@@ -55,7 +56,8 @@ const initialState = {
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      return { user: action.currentUser.user };
+      console.log("Action", action);
+      return { user: action.currentUser };
     case RECEIVE_USER_LOGOUT:
       return initialState;
     default:
