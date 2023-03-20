@@ -37,6 +37,7 @@ function TransactionTable({ transactions }) {
               description={transaction.description}
               type={transaction.type}
               category={transaction.category}
+              key={transaction._id}
             />
           ))}
         </tbody>
