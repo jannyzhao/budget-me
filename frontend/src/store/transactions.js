@@ -46,7 +46,6 @@ export const fetchTransactions = () => async (dispatch) => {
 };
 
 export const fetchUserTransactions = (id) => async (dispatch) => {
-  console.log(id);
   try {
     const res = await jwtFetch(`/api/transactions/user/${id}`);
     const transactions = await res.json();
