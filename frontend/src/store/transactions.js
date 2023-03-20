@@ -6,6 +6,7 @@ const RECEIVE_USER_TRANSACTIONS = "transactions/RECEIVE_USER_TRANSACTIONS";
 const RECEIVE_NEW_TRANSACTION = "transactions/RECEIVE_NEW_TRANSACTION";
 const RECEIVE_TRANSACTION_ERRORS = "transactions/RECEIVE_TRANSACTION_ERRORS";
 const CLEAR_TRANSACTION_ERRORS = "transactions/CLEAR_TRANSACTION_ERRORS";
+const REMOVE_TRANSACTION = "transactions/REMOVE_TRANSACTION";
 
 const receiveTransactions = (transactions) => ({
   type: RECEIVE_TRANSACTIONS,
@@ -25,6 +26,11 @@ const receiveNewTransaction = (transaction) => ({
 const receiveTransactionErrors = (errors) => ({
   type: RECEIVE_TRANSACTION_ERRORS,
   errors,
+});
+
+const removeTransaction = (transactionId) => ({
+  type: REMOVE_TRANSACTION,
+  transactionId,
 });
 
 export const clearTransactionErrors = (errors) => ({
@@ -74,6 +80,22 @@ export const composeTransaction = (data) => async (dispatch) => {
   }
 };
 
+export const deleteTransaction = (transactionId) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/transactions/${transactionId}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      dispatch(removeTransaction(transactionId));
+    }
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveTransactionErrors(resBody.errors));
+    }
+  }
+};
+
 const nullErrors = null;
 
 export const transactionErrorsReducer = (state = nullErrors, action) => {
@@ -102,6 +124,14 @@ const transactionsReducer = (
         ...state,
         user: [action.transaction, ...state.user],
         new: action.transaction,
+      };
+    case REMOVE_TRANSACTION:
+      const updatedUserTransactions = state.user.filter(
+        (transaction) => transaction.id !== action.transactionId
+      );
+      return {
+        ...state,
+        user: updatedUserTransactions,
       };
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined };
