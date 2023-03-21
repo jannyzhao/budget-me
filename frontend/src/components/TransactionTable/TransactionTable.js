@@ -12,6 +12,7 @@ function TransactionTable({ transactions }) {
     return (
       <Container>
         <div>{currentUser.username} has no Transactions</div>
+        <AddTransaction />
       </Container>
     );
   }
@@ -38,6 +39,7 @@ function TransactionTable({ transactions }) {
               type={transaction.type}
               category={transaction.category}
               key={transaction._id}
+              transaction={transaction}
             />
           ))}
         </tbody>

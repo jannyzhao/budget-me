@@ -1,17 +1,14 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import React, { useState } from "react";
+import Button from "react-bootstrap/esm/Button";
+import { deleteTransaction } from "../../store/transactions";
+import { useDispatch } from "react-redux";
 
-function TransactionRow({
-  date,
-  company,
-  description,
-  amount,
-  type: initialType,
-  category: initialCategory,
-}) {
-  const [type, setType] = useState(initialType);
-  const [category, setCategory] = useState(initialCategory);
+function TransactionRow({ transaction }) {
+  const [type, setType] = useState(transaction.type);
+  const [category, setCategory] = useState(transaction.category);
+  const dispatch = useDispatch();
 
   const handleType = (e) => {
     setType(e);
@@ -20,11 +17,17 @@ function TransactionRow({
   const handleCategory = (e) => {
     setCategory(e);
   };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteTransaction(transaction._id));
+  };
+
   return (
     <tr>
-      <td>{date}</td>
-      <td>{company}</td>
-      <td>{description}</td>
+      <td>{transaction.date}</td>
+      <td>{transaction.company}</td>
+      <td>{transaction.description}</td>
       <td>
         <DropdownButton
           id="type"
@@ -50,7 +53,12 @@ function TransactionRow({
           <Dropdown.Item eventKey="Paycheck">Paycheck</Dropdown.Item>
         </DropdownButton>
       </td>
-      <td>{amount}</td>
+      <td>{transaction.amount}</td>
+      <td>
+        <Button variant="outline-danger" onClick={handleDelete}>
+          Delete
+        </Button>
+      </td>
     </tr>
   );
 }

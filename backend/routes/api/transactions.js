@@ -52,6 +52,23 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const transaction = await Transaction.findById(req.params.id);
+    if (!transaction) {
+      const error = new Error("Transaction not found");
+      error.statusCode = 404;
+      error.errors = { message: "No transaction found with that id" };
+      return next(error);
+    }
+    await transaction.deleteOne();
+    return res.json({ message: "Transaction deleted successfully" });
+  } catch (err) {
+    next(err);
+  }
+});
+
+
 router.post(
   "/",
   requireUser,
