@@ -19,6 +19,6 @@
 2. Install dependencies: `npm install`
 3. Run node server: `npm start`
 
-**Note**
-The backend must be running before starting the node frontend server.
+> **Note**
+> The backend must be running before starting the node frontend server.
 
