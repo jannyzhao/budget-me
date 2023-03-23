@@ -68,7 +68,6 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-
 router.post(
   "/",
   requireUser,
@@ -93,5 +92,60 @@ router.post(
     }
   }
 );
+
+router.patch("/:id", async (req, res, next) => {
+  try {
+    const transaction = await Transaction.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    ).populate("user", "_id username");
+    return res.json(transaction);
+  } catch (err) {
+    const error = new Error("Transaction not found");
+    error.statusCode = 404;
+    error.errors = { message: "No transaction found with that id" };
+    return next(error);
+  }
+});
+
+// router.post(
+//   "/",
+//   requireUser,
+//   validateTransactionInput,
+//   async (req, res, next) => {
+//     try {
+//       const transactionId = req.body.id;
+//       const updateData = {
+//         date: req.body.date,
+//         company: req.body.company,
+//         description: req.body.description,
+//         type: req.body.type,
+//         category: req.body.category,
+//         amount: req.body.amount,
+//       };
+//       let transaction;
+
+//       if (transactionId) {
+//         transaction = await Transaction.findByIdAndUpdate(
+//           transactionId,
+//           updateData,
+//           { new: true }
+//         ).populate("user", "_id username");
+//       } else {
+//         const newTransaction = new Transaction({
+//           ...updateData,
+//           user: req.user._id,
+//         });
+//         transaction = await newTransaction.save();
+//         transaction = await transaction.populate("user", "_id username");
+//       }
+
+//       return res.json(transaction);
+//     } catch (err) {
+//       next(err);
+//     }
+//   }
+// );
 
 module.exports = router;

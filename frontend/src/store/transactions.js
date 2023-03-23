@@ -7,6 +7,7 @@ const RECEIVE_NEW_TRANSACTION = "transactions/RECEIVE_NEW_TRANSACTION";
 const RECEIVE_TRANSACTION_ERRORS = "transactions/RECEIVE_TRANSACTION_ERRORS";
 const CLEAR_TRANSACTION_ERRORS = "transactions/CLEAR_TRANSACTION_ERRORS";
 const REMOVE_TRANSACTION = "transactions/REMOVE_TRANSACTION";
+const RECEIVE_TRANSACTION_UPDATE = "transactions/RECEIVE_TRANSACTION_UPDATE";
 
 const receiveTransactions = (transactions) => ({
   type: RECEIVE_TRANSACTIONS,
@@ -31,6 +32,11 @@ const receiveTransactionErrors = (errors) => ({
 const removeTransaction = (transactionId) => ({
   type: REMOVE_TRANSACTION,
   transactionId,
+});
+
+const receiveTransactionUpdate = (updatedTransaction) => ({
+  type: RECEIVE_TRANSACTION_UPDATE,
+  updatedTransaction,
 });
 
 export const clearTransactionErrors = (errors) => ({
@@ -81,12 +87,31 @@ export const composeTransaction = (data) => async (dispatch) => {
 };
 
 export const deleteTransaction = (transactionId) => async (dispatch) => {
+  console.log(transactionId);
   try {
     const res = await jwtFetch(`/api/transactions/${transactionId}`, {
       method: "DELETE",
     });
     if (res.ok) {
       dispatch(removeTransaction(transactionId));
+    }
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveTransactionErrors(resBody.errors));
+    }
+  }
+};
+
+export const updateTransaction = (transaction) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/transactions/${transaction?._id}`, {
+      method: "PATCH",
+      body: JSON.stringify(transaction),
+    });
+    if (res.ok) {
+      const updatedTransaction = await res.json();
+      dispatch(receiveTransactionUpdate(updatedTransaction));
     }
   } catch (err) {
     const resBody = await err.json();
@@ -124,6 +149,14 @@ const transactionsReducer = (
         ...state,
         user: [action.transaction, ...state.user],
         new: action.transaction,
+      };
+    case RECEIVE_TRANSACTION_UPDATE:
+      const updatedTransactions = state.user.map((t) =>
+        t._id === action.transaction._id ? action.transaction : t
+      );
+      return {
+        ...state,
+        user: updatedTransactions,
       };
     case REMOVE_TRANSACTION:
       const updatedUserTransactions = state.user.filter(
