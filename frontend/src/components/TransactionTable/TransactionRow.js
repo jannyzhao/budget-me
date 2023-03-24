@@ -6,8 +6,6 @@ import EditTransaction from "./EditTransaction";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  console.log({ dateString });
-  console.log({ date });
   return date.toLocaleDateString();
 };
 
