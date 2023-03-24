@@ -21,7 +21,7 @@ function TransactionRow({ transaction }) {
       <td>{transaction.category}</td>
       <td>{transaction.amount}</td>
       <td>
-        <EditTransaction />
+        <EditTransaction transaction={transaction} />
       </td>
       <td>
         <Button variant="outline-danger" onClick={handleDelete}>

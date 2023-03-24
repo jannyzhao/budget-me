@@ -105,7 +105,7 @@ export const deleteTransaction = (transactionId) => async (dispatch) => {
 
 export const updateTransaction = (transaction) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`/api/transactions/${transaction?._id}`, {
+    const res = await jwtFetch(`/api/transactions/${transaction._id}`, {
       method: "PATCH",
       body: JSON.stringify(transaction),
     });
@@ -152,7 +152,7 @@ const transactionsReducer = (
       };
     case RECEIVE_TRANSACTION_UPDATE:
       const updatedTransactions = state.user.map((t) =>
-        t._id === action.transaction._id ? action.transaction : t
+        t._id === action.updatedTransaction._id ? action.updatedTransaction : t
       );
       return {
         ...state,
@@ -160,7 +160,7 @@ const transactionsReducer = (
       };
     case REMOVE_TRANSACTION:
       const updatedUserTransactions = state.user.filter(
-        (transaction) => transaction.id !== action.transactionId
+        (transaction) => transaction._id !== action.transactionId
       );
       return {
         ...state,
