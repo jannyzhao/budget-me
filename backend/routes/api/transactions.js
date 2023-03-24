@@ -68,7 +68,6 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-
 router.post(
   "/",
   requireUser,
@@ -93,5 +92,21 @@ router.post(
     }
   }
 );
+
+router.patch("/:id", async (req, res, next) => {
+  try {
+    const transaction = await Transaction.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    ).populate("user", "_id username");
+    return res.json(transaction);
+  } catch (err) {
+    const error = new Error("Transaction not found");
+    error.statusCode = 404;
+    error.errors = { message: "No transaction found with that id" };
+    return next(error);
+  }
+});
 
 module.exports = router;
