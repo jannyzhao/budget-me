@@ -31,16 +31,7 @@ function TransactionTable({ transactions }) {
         </thead>
         <tbody>
           {transactions?.map((transaction) => (
-            <TransactionRow
-              date={transaction.date}
-              amount={transaction.amount}
-              company={transaction.company}
-              description={transaction.description}
-              type={transaction.type}
-              category={transaction.category}
-              key={transaction._id}
-              transaction={transaction}
-            />
+            <TransactionRow key={transaction._id} transaction={transaction} />
           ))}
         </tbody>
       </Table>
