@@ -6,17 +6,6 @@ const Transaction = mongoose.model("Transaction");
 const { requireUser } = require("../../config/passport");
 const validateTransactionInput = require("../../validations/transactions");
 
-router.get("/", async (req, res) => {
-  try {
-    const transactions = await Transaction.find()
-      .populate("user", "_id username")
-      .sort({ createdAt: -1 });
-    return res.json(transactions);
-  } catch (err) {
-    return res.json([]);
-  }
-});
-
 router.get("/user/:userId", async (req, res, next) => {
   let user;
   try {
@@ -31,9 +20,13 @@ router.get("/user/:userId", async (req, res, next) => {
     const transactions = await Transaction.find({ user: user._id })
       .sort({ createdAt: -1 })
       .populate("user", "_id username");
-    return res.json(transactions);
+    const calculations = transactions.reduce(
+      (total, transaction) => total + transaction.amount,
+      0
+    );
+    res.json({ calculations, transactions });
   } catch (err) {
-    return res.json([]);
+    return res.json({ calculations: [], transactions: [] });
   }
 });
 

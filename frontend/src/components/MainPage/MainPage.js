@@ -25,9 +25,9 @@ function MainPage() {
   return (
     <Container className="pt-4">
       <div className="d-flex justify-content-center gap-4">
-        <MonthlyIncome className="pr-4" />
-        <AmountSpent className="mb-4" />
-        <Balance className="mb-4" />
+        <MonthlyIncome className="pr-4" transactions={userTransactions} />
+        <AmountSpent className="mb-4" transactions={userTransactions} />
+        <Balance className="mb-4" transactions={userTransactions} />
       </div>
       <TransactionTable transactions={userTransactions} />
     </Container>
