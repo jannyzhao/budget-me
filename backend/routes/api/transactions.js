@@ -109,43 +109,4 @@ router.patch("/:id", async (req, res, next) => {
   }
 });
 
-// router.post(
-//   "/",
-//   requireUser,
-//   validateTransactionInput,
-//   async (req, res, next) => {
-//     try {
-//       const transactionId = req.body.id;
-//       const updateData = {
-//         date: req.body.date,
-//         company: req.body.company,
-//         description: req.body.description,
-//         type: req.body.type,
-//         category: req.body.category,
-//         amount: req.body.amount,
-//       };
-//       let transaction;
-
-//       if (transactionId) {
-//         transaction = await Transaction.findByIdAndUpdate(
-//           transactionId,
-//           updateData,
-//           { new: true }
-//         ).populate("user", "_id username");
-//       } else {
-//         const newTransaction = new Transaction({
-//           ...updateData,
-//           user: req.user._id,
-//         });
-//         transaction = await newTransaction.save();
-//         transaction = await transaction.populate("user", "_id username");
-//       }
-
-//       return res.json(transaction);
-//     } catch (err) {
-//       next(err);
-//     }
-//   }
-// );
-
 module.exports = router;

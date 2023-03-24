@@ -87,7 +87,6 @@ export const composeTransaction = (data) => async (dispatch) => {
 };
 
 export const deleteTransaction = (transactionId) => async (dispatch) => {
-  console.log(transactionId);
   try {
     const res = await jwtFetch(`/api/transactions/${transactionId}`, {
       method: "DELETE",
