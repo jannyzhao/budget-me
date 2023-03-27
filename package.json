@@ -2,9 +2,6 @@
   "name": "budget-me",
   "version": "1.0.0",
   "description": "Budget App",
-  "dependencies": {
-    "bootswatch": "^5.2.3"
-  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
