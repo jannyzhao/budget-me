@@ -14,7 +14,10 @@ function MainPage() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userTransactions = useSelector((state) =>
-    Object.values(state.transactions.user)
+    Object.values(state.transactions.user.transactions)
+  );
+  const userCalculations = useSelector(
+    (state) => state.transactions.user.calculations
   );
 
   useEffect(() => {
@@ -25,11 +28,11 @@ function MainPage() {
   return (
     <Container className="pt-4">
       <div className="d-flex overflow-auto gap-3 mb-4">
-        <MonthlyIncome />
-        <AmountSpent />
-        <Balance />
+        <MonthlyIncome amount={userCalculations.monthlyIncome} />
+        <AmountSpent amount={userCalculations.amountSpent} />
+        <Balance amount={userCalculations.balance} />
       </div>
-      <TransactionTable transactions={userTransactions}/>
+      <TransactionTable transactions={userTransactions} />
     </Container>
   );
 }
