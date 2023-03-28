@@ -28,10 +28,10 @@ function MainPage() {
 
   return (
     <Container className="pt-4">
-      <div className="d-flex justify-content-center gap-4">
-        <MonthlyIncome className="pr-4" calculations={userCalculations} />
-        <AmountSpent className="mb-4" amount={userCalculations.amountSpent} />
-        <Balance className="mb-4" calculations={userCalculations} />
+      <div className="d-flex overflow-auto gap-3 mb-4">
+        <MonthlyIncome calculations={userCalculations} />
+        <AmountSpent amount={userCalculations.amountSpent} />
+        <Balance calculations={userCalculations} />
       </div>
       <TransactionTable transactions={userTransactions} />
     </Container>

@@ -8,7 +8,7 @@ import { composeTransaction } from "../../store/transactions";
 import { useDispatch } from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
 
-function AddTransaction() {
+function AddTransaction({ className }) {
   const [show, setShow] = useState(false);
   const [type, setType] = useState();
   const [category, setCategory] = useState();
@@ -39,7 +39,7 @@ function AddTransaction() {
   };
 
   return (
-    <>
+    <div className={className}>
       <Button variant="success" onClick={handleShow}>
         + Add Transaction
       </Button>
@@ -114,7 +114,7 @@ function AddTransaction() {
           </Modal.Footer>
         </Form>
       </Modal>
-    </>
+    </div>
   );
 }
 
