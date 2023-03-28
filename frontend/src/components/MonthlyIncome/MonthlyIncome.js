@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card";
 import React from "react";
 import Container from "react-bootstrap/esm/Container";
 
-function MonthlyIncome({ className }) {
+function MonthlyIncome({ className, amount }) {
   return (
     <div className={className}>
       <Card
@@ -21,7 +21,7 @@ function MonthlyIncome({ className }) {
           <Card.Subtitle className="mb-2 text-muted">
             Income for March
           </Card.Subtitle>
-          <Card.Text>$4500.00</Card.Text>
+          <Card.Text>${amount}</Card.Text>
         </Card.Body>
       </Card>
     </div>

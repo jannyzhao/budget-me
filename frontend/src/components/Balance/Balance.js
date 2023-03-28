@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import React from "react";
 
-function Balance({ className }) {
+function Balance({ className, amount }) {
   return (
     <div className={className}>
       <Card
@@ -19,7 +19,7 @@ function Balance({ className }) {
           <Card.Subtitle className="mb-2 text-muted">
             Remaining Balance
           </Card.Subtitle>
-          <Card.Text>$4320.00</Card.Text>
+          <Card.Text>${amount}</Card.Text>
         </Card.Body>
       </Card>
     </div>

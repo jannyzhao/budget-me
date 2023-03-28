@@ -19,7 +19,6 @@ function MainPage() {
   const userCalculations = useSelector(
     (state) => state.transactions.user.calculations
   );
-  console.log(userCalculations);
 
   useEffect(() => {
     dispatch(fetchUserTransactions(currentUser._id));
@@ -29,9 +28,9 @@ function MainPage() {
   return (
     <Container className="pt-4">
       <div className="d-flex overflow-auto gap-3 mb-4">
-        <MonthlyIncome calculations={userCalculations} />
+        <MonthlyIncome amount={userCalculations.monthlyIncome} />
         <AmountSpent amount={userCalculations.amountSpent} />
-        <Balance calculations={userCalculations} />
+        <Balance amount={userCalculations.balance} />
       </div>
       <TransactionTable transactions={userTransactions} />
     </Container>

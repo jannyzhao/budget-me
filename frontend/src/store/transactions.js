@@ -42,7 +42,6 @@ export const fetchUserTransactions = (id) => async (dispatch) => {
   try {
     const res = await jwtFetch(`/api/transactions/user/${id}`);
     const json = await res.json();
-    console.log(json);
     dispatch(receiveUserTransactions(json));
   } catch (err) {
     const resBody = await err.json();
@@ -141,20 +140,26 @@ const transactionsReducer = (
         new: action.transaction,
       };
     case RECEIVE_TRANSACTION_UPDATE:
-      const updatedTransactions = state.user.map((t) =>
+      const updatedTransactions = state.user.transactions.map((t) =>
         t._id === action.updatedTransaction._id ? action.updatedTransaction : t
       );
       return {
         ...state,
-        user: updatedTransactions,
+        user: {
+          transactions: updatedTransactions,
+          calculations: state.user.calculations,
+        },
       };
     case REMOVE_TRANSACTION:
-      const updatedUserTransactions = state.user.filter(
+      const updatedUserTransactions = state.user.transactions.filter(
         (transaction) => transaction._id !== action.transactionId
       );
       return {
         ...state,
-        user: updatedUserTransactions,
+        user: {
+          transactions: updatedUserTransactions,
+          calculations: state.user.calculations,
+        },
       };
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined };

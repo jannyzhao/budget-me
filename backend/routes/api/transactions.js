@@ -24,27 +24,20 @@ router.get("/user/:userId", async (req, res, next) => {
     const monthlyIncome = transactions
       .filter((transaction) => transaction.type === "Income")
       .reduce((total, transaction) => total + transaction.amount, 0);
-    console.log("monthlyIncome", monthlyIncome);
 
     const amountSpent = transactions
       .filter((transaction) => transaction.type === "Expense")
       .reduce((total, transaction) => total + transaction.amount, 0);
-    console.log("amountSpent", amountSpent);
 
     const monthlySavings = transactions
       .filter((transaction) => transaction.type === "Saving")
       .reduce((total, transaction) => total + transaction.amount, 0);
-    console.log("monthlySavings", monthlySavings);
 
     const balance = monthlyIncome - amountSpent - monthlySavings;
-    console.log("balance", balance);
 
     const calculations = { monthlyIncome, amountSpent, balance };
-    console.log("calculations", calculations);
 
-    const json = res.json({ calculations, transactions });
-    console.log(json);
-    return json;
+    return res.json({ calculations, transactions });
   } catch (err) {
     return res.json({ calculations: {}, transactions: [] });
   }
