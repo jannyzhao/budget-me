@@ -1,6 +1,5 @@
 import Table from "react-bootstrap/Table";
 import React from "react";
-import Container from "react-bootstrap/Container";
 import TransactionRow from "./TransactionRow";
 import AddTransaction from "./AddTransaction";
 import { useSelector } from "react-redux";
@@ -10,14 +9,14 @@ function TransactionTable({ transactions }) {
 
   if (transactions.length === 0) {
     return (
-      <Container>
+      <>
         <div>{currentUser.username} has no Transactions</div>
         <AddTransaction />
-      </Container>
+      </>
     );
   }
   return (
-    <Container>
+    <>
       <Table responsive striped bordered hover>
         <thead>
           <tr>
@@ -36,8 +35,8 @@ function TransactionTable({ transactions }) {
           ))}
         </tbody>
       </Table>
-      <AddTransaction />
-    </Container>
+      <AddTransaction className="mt-2" />
+    </>
   );
 }
 // }

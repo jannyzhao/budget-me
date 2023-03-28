@@ -9,8 +9,6 @@ import {
   fetchUserTransactions,
   clearTransactionErrors,
 } from "../../store/transactions";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -26,18 +24,12 @@ function MainPage() {
 
   return (
     <Container className="pt-4">
-      <Row>
-        <Col className="mb-4 d-flex justify-content-center">
-          <MonthlyIncome />
-        </Col>
-        <Col className="mb-4 d-flex justify-content-center">
-          <AmountSpent />
-        </Col>
-        <Col className="mb-4 d-flex justify-content-center">
-          <Balance />
-        </Col>
-        <TransactionTable transactions={userTransactions} />
-      </Row>
+      <div className="d-flex overflow-auto gap-3 mb-4">
+        <MonthlyIncome />
+        <AmountSpent />
+        <Balance />
+      </div>
+      <TransactionTable transactions={userTransactions}/>
     </Container>
   );
 }
