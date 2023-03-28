@@ -34,23 +34,8 @@ function NavBar() {
                 navbarScroll
               >
                 <Nav.Link href={"/transactions"}>All Transactions</Nav.Link>
-                <NavDropdown title="Menu" id="navbarScrollingDropdown">
-                  <NavDropdown.Item href={"/profile"}>Profile</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={logoutUser}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <Nav.Link onClick={logoutUser}>Logout</Nav.Link>
               </Nav>
-              <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search Transaction"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="primary">Search</Button>
-              </Form>
             </Navbar.Collapse>
           </Container>
         </Navbar>

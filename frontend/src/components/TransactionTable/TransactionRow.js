@@ -24,7 +24,7 @@ function TransactionRow({ transaction }) {
       <td>{transaction.description}</td>
       <td>{transaction.type}</td>
       <td>{transaction.category}</td>
-      <td>{transaction.amount}</td>
+      <td>${transaction.amount}</td>
       <td className="d-flex gap-2">
         <EditTransaction transaction={transaction} />
         <Button variant="outline-danger" onClick={handleDelete}>
