@@ -25,10 +25,8 @@ function TransactionRow({ transaction }) {
       <td>{transaction.type}</td>
       <td>{transaction.category}</td>
       <td>{transaction.amount}</td>
-      <td>
+      <td className="d-flex gap-2">
         <EditTransaction transaction={transaction} />
-      </td>
-      <td>
         <Button variant="outline-danger" onClick={handleDelete}>
           Delete
         </Button>

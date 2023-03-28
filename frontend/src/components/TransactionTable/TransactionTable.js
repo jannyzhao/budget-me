@@ -27,6 +27,7 @@ function TransactionTable({ transactions }) {
             <th>TYPE</th>
             <th>CATEGORY</th>
             <th>AMOUNT</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
