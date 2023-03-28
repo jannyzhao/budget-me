@@ -13,7 +13,7 @@ function EditTransaction({ transaction, formatDate }) {
   const [type, setType] = useState(transaction.type);
   const [category, setCategory] = useState(transaction.category);
   const [company, setCompany] = useState(transaction.company);
-  const [date, setDate] = useState(formatDate);
+  const [date, setDate] = useState(transaction.date);
   const [description, setDescription] = useState(transaction.description);
   const [amount, setAmount] = useState(transaction.amount);
   const handleClose = () => setShow(false);
@@ -33,11 +33,11 @@ function EditTransaction({ transaction, formatDate }) {
   };
 
   const handleType = (e) => {
-    setType(e);
+    setType(e.target.value);
   };
 
   const handleCategory = (e) => {
-    setCategory(e);
+    setCategory(e.target.value);
   };
 
   const handleAmount = (e) => {
@@ -50,8 +50,8 @@ function EditTransaction({ transaction, formatDate }) {
       _id: e.target.id.value,
       date,
       amount,
-      company: e.target.company.value,
-      description: e.target.description.value,
+      company,
+      description,
       type,
       category,
     };
