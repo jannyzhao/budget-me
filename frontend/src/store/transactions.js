@@ -1,7 +1,6 @@
 import jwtFetch from "./jwt";
 import { RECEIVE_USER_LOGOUT } from "./session";
 
-const RECEIVE_TRANSACTIONS = "transactions/RECEIVE_TRANSACTIONS";
 const RECEIVE_USER_TRANSACTIONS = "transactions/RECEIVE_USER_TRANSACTIONS";
 const RECEIVE_NEW_TRANSACTION = "transactions/RECEIVE_NEW_TRANSACTION";
 const RECEIVE_TRANSACTION_ERRORS = "transactions/RECEIVE_TRANSACTION_ERRORS";
@@ -9,14 +8,9 @@ const CLEAR_TRANSACTION_ERRORS = "transactions/CLEAR_TRANSACTION_ERRORS";
 const REMOVE_TRANSACTION = "transactions/REMOVE_TRANSACTION";
 const RECEIVE_TRANSACTION_UPDATE = "transactions/RECEIVE_TRANSACTION_UPDATE";
 
-const receiveTransactions = (transactions) => ({
-  type: RECEIVE_TRANSACTIONS,
-  transactions,
-});
-
-const receiveUserTransactions = (transactions) => ({
+const receiveUserTransactions = ({ transactions, calculations }) => ({
   type: RECEIVE_USER_TRANSACTIONS,
-  transactions,
+  payload: { transactions, calculations },
 });
 
 const receiveNewTransaction = (transaction) => ({
@@ -44,24 +38,12 @@ export const clearTransactionErrors = (errors) => ({
   errors,
 });
 
-export const fetchTransactions = () => async (dispatch) => {
-  try {
-    const res = await jwtFetch("/api/transactions");
-    const transactions = await res.json();
-    dispatch(receiveTransactions(transactions));
-  } catch (err) {
-    const resBody = await err.json();
-    if (resBody.statusCode === 400) {
-      dispatch(receiveTransactionErrors(resBody.errors));
-    }
-  }
-};
-
 export const fetchUserTransactions = (id) => async (dispatch) => {
   try {
     const res = await jwtFetch(`/api/transactions/user/${id}`);
-    const transactions = await res.json();
-    dispatch(receiveUserTransactions(transactions));
+    const json = await res.json();
+    console.log(json);
+    dispatch(receiveUserTransactions(json));
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
@@ -134,19 +116,28 @@ export const transactionErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
+const defaultUser = { transactions: [], calculations: {} };
 const transactionsReducer = (
-  state = { all: {}, user: {}, new: undefined },
+  state = { all: {}, user: defaultUser, new: undefined },
   action
 ) => {
   switch (action.type) {
-    case RECEIVE_TRANSACTIONS:
-      return { ...state, all: action.transactions, new: undefined };
     case RECEIVE_USER_TRANSACTIONS:
-      return { ...state, user: action.transactions, new: undefined };
+      return {
+        ...state,
+        user: {
+          transactions: action.payload.transactions,
+          calculations: action.payload.calculations,
+        },
+        new: undefined,
+      };
     case RECEIVE_NEW_TRANSACTION:
       return {
         ...state,
-        user: [action.transaction, ...state.user],
+        user: {
+          transactions: [action.transaction, ...state.user.transactions],
+          calculations: state.user.calculations,
+        },
         new: action.transaction,
       };
     case RECEIVE_TRANSACTION_UPDATE:

@@ -14,8 +14,12 @@ function MainPage() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userTransactions = useSelector((state) =>
-    Object.values(state.transactions.user)
+    Object.values(state.transactions.user.transactions)
   );
+  const userCalculations = useSelector(
+    (state) => state.transactions.user.calculations
+  );
+  console.log(userCalculations);
 
   useEffect(() => {
     dispatch(fetchUserTransactions(currentUser._id));
@@ -25,9 +29,9 @@ function MainPage() {
   return (
     <Container className="pt-4">
       <div className="d-flex justify-content-center gap-4">
-        <MonthlyIncome className="pr-4" transactions={userTransactions} />
-        <AmountSpent className="mb-4" transactions={userTransactions} />
-        <Balance className="mb-4" transactions={userTransactions} />
+        <MonthlyIncome className="pr-4" calculations={userCalculations} />
+        <AmountSpent className="mb-4" amount={userCalculations.amountSpent} />
+        <Balance className="mb-4" calculations={userCalculations} />
       </div>
       <TransactionTable transactions={userTransactions} />
     </Container>
