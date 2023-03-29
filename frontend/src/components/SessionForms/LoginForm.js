@@ -29,15 +29,13 @@ function LoginForm() {
   };
 
   return (
-    <Container fluid="sm">
+    <Container fluid="sm" className="p-3 my-5 d-flex flex-column w-50">
       <Form onSubmit={handleSubmit}>
         <h2>Log In</h2>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-
           <Form.Control
             type="email"
-            placeholder="demo@user.io"
+            placeholder="Email"
             value={email}
             onChange={update("email")}
           />
@@ -51,11 +49,9 @@ function LoginForm() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-
           <Form.Control
             type="password"
-            placeholder="password"
+            placeholder="Password"
             value={password}
             onChange={update("password")}
           />
@@ -64,11 +60,7 @@ function LoginForm() {
           ) : null}
         </Form.Group>
 
-        <Button
-          type="submit"
-          disabled={!email || !password}
-          variant="success"
-        >
+        <Button type="submit" disabled={!email || !password} variant="success">
           Login
         </Button>
       </Form>

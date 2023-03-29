@@ -54,12 +54,10 @@ function SignupForm() {
   };
 
   return (
-    <Container fluid="sm">
+    <Container fluid="sm" className="p-3 my-5 d-flex flex-column w-50">
       <Form onSubmit={handleSubmit}>
-        <h2>Sign Up Form</h2>
+        <h2>Sign Up</h2>
         <Form.Group className="mb-3" controlId="formBasicUsername">
-          <Form.Label>Username</Form.Label>
-
           <Form.Control
             type="username"
             placeholder="Username"
@@ -72,8 +70,6 @@ function SignupForm() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-
           <Form.Control
             type="email"
             placeholder="demo@user.io"
@@ -86,8 +82,6 @@ function SignupForm() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-
           <Form.Control
             type="password"
             placeholder="Password"
@@ -100,8 +94,6 @@ function SignupForm() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Confirm Password</Form.Label>
-
           <Form.Control
             type="password"
             value={password2}
