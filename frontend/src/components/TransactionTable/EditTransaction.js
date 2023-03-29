@@ -47,7 +47,7 @@ function EditTransaction({ transaction, formatDate }) {
   const handleEdit = (e) => {
     e.preventDefault();
     const transaction = {
-      _id: e.target.id.value,
+      _id: transaction._id,
       date,
       amount,
       company,
