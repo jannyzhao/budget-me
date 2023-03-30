@@ -35,6 +35,9 @@ const renderCustomizedLabel = ({
 function formatData(userTransactions) {
   const groups = {};
   userTransactions.forEach((transaction) => {
+    if (transaction.type !== "Expense") {
+      return;
+    }
     if (!groups[transaction.category]) {
       groups[transaction.category] = 0;
     }
@@ -46,6 +49,7 @@ function formatData(userTransactions) {
   }));
   return data;
 }
+
 
 function ExpenseChart({ userTransactions }) {
   const data = formatData(userTransactions);

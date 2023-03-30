@@ -12,11 +12,12 @@ const CATEGORIES = [
   "Miscellaneous",
   "Paycheck",
   "Rent/Mortgage",
+  "Savings",
   "Subscription",
   "Utilities",
 ];
 
-const TYPES = ["Income", "Expense", "Saving"];
+const TYPES = ["Income", "Expense", "Savings"];
 
 const validateTransactionInput = [
   check("date")
