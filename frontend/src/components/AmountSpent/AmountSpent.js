@@ -18,7 +18,7 @@ function AmountSpent({ className, amount }) {
             style={{ width: "100px", height: "auto" }}
           />
           <Card.Subtitle className="mb-2 text-muted">
-            Money Spent in March
+            Money Spent
           </Card.Subtitle>
           <Card.Text>${amount}</Card.Text>
         </Card.Body>

@@ -3,10 +3,6 @@ import { logout } from "../../store/session";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import AddTransaction from "../TransactionTable/AddTransaction";
 
 function NavBar() {
   const loggedIn = useSelector((state) => {
@@ -25,7 +21,7 @@ function NavBar() {
       return (
         <Navbar bg="light" expand="lg">
           <Container fluid>
-            <Navbar.Brand href={"/transactions"}>BudgetMe</Navbar.Brand>
+            <Navbar.Brand href={"/transactions"}>Budget Me</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav

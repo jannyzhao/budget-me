@@ -8,7 +8,7 @@ function SplashPage() {
     <Container fluid style={{ paddingTop: "30vh" }}>
       <Row className="justify-content-md-center">
         <Col md="auto">
-          <h1>BudgetMe</h1>
+          <h1>Budget Me</h1>
           <h6 className="text-muted">Let's start saving some money.</h6>
           <Button variant="success" href={"/login"}>
             Get Started
