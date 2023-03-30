@@ -84,7 +84,7 @@ function AddTransaction({ className }) {
                 >
                   <Dropdown.Item eventKey="Income">Income</Dropdown.Item>
                   <Dropdown.Item eventKey="Expense">Expense</Dropdown.Item>
-                  <Dropdown.Item eventKey="Savings">Savings</Dropdown.Item>
+                  <Dropdown.Item eventKey="Savings">Saving</Dropdown.Item>
                 </DropdownButton>
               </Form.Group>
               <Form.Group controlId="category">
