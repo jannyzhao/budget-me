@@ -23,6 +23,16 @@ function LoginForm() {
     return (e) => setState(e.currentTarget.value);
   };
 
+  const demoLogin = (e) => {
+    e.preventDefault();
+    return dispatch(
+      login({
+        email: "user2@demo.com",
+        password: "password",
+      })
+    );
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
@@ -62,6 +72,9 @@ function LoginForm() {
 
         <Button type="submit" disabled={!email || !password} variant="success">
           Login
+        </Button>
+        <Button type="submit" onClick={demoLogin} variant="outline-success">
+          Demo Login
         </Button>
       </Form>
     </Container>
