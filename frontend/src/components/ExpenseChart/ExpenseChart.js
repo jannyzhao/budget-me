@@ -1,5 +1,6 @@
 import React from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import Card from "react-bootstrap/Card";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -49,24 +50,36 @@ function formatData(userTransactions) {
 function ExpenseChart({ userTransactions }) {
   const data = formatData(userTransactions);
   return (
-    // <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={400} height={400}>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-    // </ResponsiveContainer>
+    <Card
+    style={{ width: "15rem" }}
+    border="secondary"
+    className="text-center"
+    >
+        <ResponsiveContainer>
+        <Card.Body>
+          <PieChart width={250} height={150}>
+            <Pie
+              data={data}
+              cx="40%"
+              cy="50%"
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={75}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Tooltip />
+          </PieChart>
+        </Card.Body>
+        </ResponsiveContainer>
+      </Card>
   );
 }
 

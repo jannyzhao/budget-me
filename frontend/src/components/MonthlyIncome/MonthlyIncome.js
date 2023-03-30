@@ -9,7 +9,6 @@ function MonthlyIncome({ className, amount }) {
         border="secondary"
         className="text-center"
       >
-        <Card.Header as="h6">Monthly Income</Card.Header>
 
         <Card.Body>
           <Card.Img

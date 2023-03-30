@@ -29,11 +29,11 @@ router.get("/user/:userId", async (req, res, next) => {
       .filter((transaction) => transaction.type === "Expense")
       .reduce((total, transaction) => total + transaction.amount, 0);
 
-    const monthlySavings = transactions
-      .filter((transaction) => transaction.type === "Savings")
+    const monthlySaving = transactions
+      .filter((transaction) => transaction.type === "Saving")
       .reduce((total, transaction) => total + transaction.amount, 0);
 
-    const balance = monthlyIncome - amountSpent - monthlySavings;
+    const balance = monthlyIncome - amountSpent - monthlySaving;
 
     const calculations = { monthlyIncome, amountSpent, balance };
 

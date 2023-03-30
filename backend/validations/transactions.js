@@ -2,18 +2,18 @@ const { check } = require("express-validator");
 const handleValidationErrors = require("./handleValidationErrors");
 
 const CATEGORIES = [
-  "Paycheck",
-  "Saving",
-  "Car",
-  "Groceries",
-  "Insurance",
-  "Subscription",
-  "Miscellaneous",
-  "Entertainment",
-  "Rent/Mortgage",
-  "Household",
-  "Food",
+  "Auto",
   "Clothing",
+  "Entertainment",
+  "Food",
+  "Groceries",
+  "Household",
+  "Insurance",
+  "Miscellaneous",
+  "Paycheck",
+  "Rent/Mortgage",
+  "Subscription",
+  "Utilities",
 ];
 
 const TYPES = ["Income", "Expense", "Saving"];

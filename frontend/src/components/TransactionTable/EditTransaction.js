@@ -47,7 +47,7 @@ function EditTransaction({ transaction, formatDate }) {
   const handleEdit = (e) => {
     e.preventDefault();
     const transaction = {
-      _id: transaction._id,
+      _id: e.target.id.value,
       date,
       amount,
       company,
@@ -140,10 +140,26 @@ function EditTransaction({ transaction, formatDate }) {
                   variant="light"
                   name="category"
                 >
-                  <Dropdown.Item eventKey="Groceries">Groceries</Dropdown.Item>
-                  <Dropdown.Item eventKey="Food">Food</Dropdown.Item>
+                  <Dropdown.Item eventKey="Auto">Auto</Dropdown.Item>
                   <Dropdown.Item eventKey="Clothing">Clothing</Dropdown.Item>
+                  <Dropdown.Item eventKey="Groceries">Groceries</Dropdown.Item>
+                  <Dropdown.Item eventKey="Entertainment">
+                    Entertainment
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Food">Food</Dropdown.Item>
+                  <Dropdown.Item eventKey="Household">Household</Dropdown.Item>
+                  <Dropdown.Item eventKey="Insurance">Insurance</Dropdown.Item>
+                  <Dropdown.Item eventKey="Miscellaneous">
+                    Miscellaneous
+                  </Dropdown.Item>
                   <Dropdown.Item eventKey="Paycheck">Paycheck</Dropdown.Item>
+                  <Dropdown.Item eventKey="Rent/Mortgage">
+                    Rent/Mortgage
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Subscription">
+                    Subscription
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Utilities">Utilities</Dropdown.Item>
                 </DropdownButton>
               </Form.Group>
             </div>

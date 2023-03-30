@@ -35,7 +35,9 @@ function MainPage() {
         <Balance amount={userCalculations.balance} />
       </div>
       <h4>Summary</h4>
-      <ExpenseChart userTransactions={userTransactions} />
+      <div className="d-flex overflow-auto gap-3 mb-4">
+        <ExpenseChart userTransactions={userTransactions} />
+      </div>
       <h4>Transactions</h4>
       <TransactionTable transactions={userTransactions} />
     </Container>

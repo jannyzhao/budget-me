@@ -9,7 +9,6 @@ function Balance({ className, amount }) {
         border="secondary"
         className="text-center"
       >
-        <Card.Header as="h6">Balance</Card.Header>
         <Card.Body>
           <Card.Img
             variant="top"

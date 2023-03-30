@@ -9,17 +9,13 @@ function AmountSpent({ className, amount }) {
         border="secondary"
         className="text-center"
       >
-        <Card.Header as="h6">Amount Spent</Card.Header>
-
         <Card.Body>
           <Card.Img
             variant="top"
             src="money.png"
             style={{ width: "100px", height: "auto" }}
           />
-          <Card.Subtitle className="mb-2 text-muted">
-            Money Spent
-          </Card.Subtitle>
+          <Card.Subtitle className="mb-2 text-muted">Money Spent</Card.Subtitle>
           <Card.Text>${amount}</Card.Text>
         </Card.Body>
       </Card>
