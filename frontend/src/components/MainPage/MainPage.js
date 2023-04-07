@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Container from "react-bootstrap/esm/Container";
 import MonthlyIncome from "../MonthlyIncome/MonthlyIncome";
+import Container from "react-bootstrap/Container";
 import TransactionTable from "../TransactionTable/TransactionTable";
 import DateSelector from "../DateSelector/DateSelector";
 import AmountSpent from "../AmountSpent/AmountSpent";
@@ -10,6 +10,7 @@ import {
   fetchUserTransactions,
   clearTransactionErrors,
 } from "../../store/transactions";
+import ExpenseChart from "../ExpenseChart/ExpenseChart";
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -29,11 +30,17 @@ function MainPage() {
   return (
     <Container className="pt-4">
       <DateSelector />
+      <h4>Overview</h4>
       <div className="d-flex overflow-auto gap-3 mb-4">
         <MonthlyIncome amount={userCalculations.monthlyIncome} />
         <AmountSpent amount={userCalculations.amountSpent} />
         <Balance amount={userCalculations.balance} />
       </div>
+      <h4>Summary</h4>
+      <div className="d-flex overflow-auto gap-3 mb-4">
+        <ExpenseChart userTransactions={userTransactions} />
+      </div>
+      <h4>Transactions</h4>
       <TransactionTable transactions={userTransactions} />
     </Container>
   );

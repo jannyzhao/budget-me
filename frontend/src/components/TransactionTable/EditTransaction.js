@@ -8,30 +8,50 @@ import { useDispatch } from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
 import { updateTransaction } from "../../store/transactions";
 
-function EditTransaction({ transaction }) {
+function EditTransaction({ transaction, formatDate }) {
   const [show, setShow] = useState(false);
-  const [type, setType] = useState();
-  const [category, setCategory] = useState();
+  const [type, setType] = useState(transaction.type);
+  const [category, setCategory] = useState(transaction.category);
+  const [company, setCompany] = useState(transaction.company);
+  const [date, setDate] = useState(transaction.date);
+  const [description, setDescription] = useState(transaction.description);
+  const [amount, setAmount] = useState(transaction.amount);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
 
+  const handleDate = (e) => {
+    setDate(e.target.value);
+  };
+
+  const handleDescription = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleCompany = (e) => {
+    setCompany(e.target.value);
+  };
+
   const handleType = (e) => {
-    setType(e);
+    setType(e.target.value);
   };
 
   const handleCategory = (e) => {
-    setCategory(e);
+    setCategory(e.target.value);
+  };
+
+  const handleAmount = (e) => {
+    setAmount(e.target.value);
   };
 
   const handleEdit = (e) => {
     e.preventDefault();
     const transaction = {
       _id: e.target.id.value,
-      date: e.target.date.value,
-      amount: e.target.amount.value,
-      company: e.target.company.value,
-      description: e.target.description.value,
+      date,
+      amount,
+      company,
+      description,
       type,
       category,
     };
@@ -55,13 +75,24 @@ function EditTransaction({ transaction }) {
             <div className="d-flex gap-4 mb-3">
               <Form.Group controlId="date">
                 <Form.Label>Date</Form.Label>
-                <Form.Control type="date" name="date" autoFocus />
+                <Form.Control
+                  type="date"
+                  name="date"
+                  value={date}
+                  onChange={handleDate}
+                  autoFocus
+                />
               </Form.Group>
               <Form.Group controlId="amount">
                 <Form.Label>Amount</Form.Label>
                 <InputGroup>
                   <InputGroup.Text>$</InputGroup.Text>
-                  <Form.Control type="text" name="amount" />
+                  <Form.Control
+                    type="text"
+                    name="amount"
+                    value={amount}
+                    onChange={handleAmount}
+                  />
                 </InputGroup>
               </Form.Group>
             </div>
@@ -70,11 +101,19 @@ function EditTransaction({ transaction }) {
               <Form.Control
                 type="text"
                 name="company"
+                value={company}
+                onChange={handleCompany}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="description">
               <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={2} name="description" />
+              <Form.Control
+                as="textarea"
+                rows={2}
+                name="description"
+                value={description}
+                onChange={handleDescription}
+              />
             </Form.Group>
 
             <div className="d-flex gap-4">
@@ -89,7 +128,7 @@ function EditTransaction({ transaction }) {
                 >
                   <Dropdown.Item eventKey="Income">Income</Dropdown.Item>
                   <Dropdown.Item eventKey="Expense">Expense</Dropdown.Item>
-                  <Dropdown.Item eventKey="Saving">Saving</Dropdown.Item>
+                  <Dropdown.Item eventKey="Savings">Savings</Dropdown.Item>
                 </DropdownButton>
               </Form.Group>
               <Form.Group controlId="category">
@@ -101,10 +140,27 @@ function EditTransaction({ transaction }) {
                   variant="light"
                   name="category"
                 >
-                  <Dropdown.Item eventKey="Groceries">Groceries</Dropdown.Item>
-                  <Dropdown.Item eventKey="Food">Food</Dropdown.Item>
+                  <Dropdown.Item eventKey="Auto">Auto</Dropdown.Item>
                   <Dropdown.Item eventKey="Clothing">Clothing</Dropdown.Item>
+                  <Dropdown.Item eventKey="Groceries">Groceries</Dropdown.Item>
+                  <Dropdown.Item eventKey="Entertainment">
+                    Entertainment
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Food">Food</Dropdown.Item>
+                  <Dropdown.Item eventKey="Household">Household</Dropdown.Item>
+                  <Dropdown.Item eventKey="Insurance">Insurance</Dropdown.Item>
+                  <Dropdown.Item eventKey="Miscellaneous">
+                    Miscellaneous
+                  </Dropdown.Item>
                   <Dropdown.Item eventKey="Paycheck">Paycheck</Dropdown.Item>
+                  <Dropdown.Item eventKey="Rent/Mortgage">
+                    Rent/Mortgage
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Savings">Savings</Dropdown.Item>
+                  <Dropdown.Item eventKey="Subscription">
+                    Subscription
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Utilities">Utilities</Dropdown.Item>
                 </DropdownButton>
               </Form.Group>
             </div>

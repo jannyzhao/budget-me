@@ -1,6 +1,5 @@
 import Card from "react-bootstrap/Card";
 import React from "react";
-import Container from "react-bootstrap/esm/Container";
 
 function MonthlyIncome({ className, amount }) {
   return (
@@ -10,7 +9,6 @@ function MonthlyIncome({ className, amount }) {
         border="secondary"
         className="text-center"
       >
-        <Card.Header as="h6">Monthly Income</Card.Header>
 
         <Card.Body>
           <Card.Img
@@ -19,7 +17,7 @@ function MonthlyIncome({ className, amount }) {
             style={{ width: "100px", height: "auto" }}
           />
           <Card.Subtitle className="mb-2 text-muted">
-            Income for March
+            Income
           </Card.Subtitle>
           <Card.Text>${amount}</Card.Text>
         </Card.Body>
