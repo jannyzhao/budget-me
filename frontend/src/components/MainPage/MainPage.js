@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Container from "react-bootstrap/esm/Container";
 import MonthlyIncome from "../MonthlyIncome/MonthlyIncome";
 import TransactionTable from "../TransactionTable/TransactionTable";
-import MonthSelector from "../MonthSelector/MonthSelector";
+import DateSelector from "../DateSelector/DateSelector";
 import AmountSpent from "../AmountSpent/AmountSpent";
 import Balance from "../Balance/Balance";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +28,7 @@ function MainPage() {
 
   return (
     <Container className="pt-4">
-      <MonthSelector />
+      <DateSelector />
       <div className="d-flex overflow-auto gap-3 mb-4">
         <MonthlyIncome amount={userCalculations.monthlyIncome} />
         <AmountSpent amount={userCalculations.amountSpent} />
