@@ -26,6 +26,7 @@ function DateSelector() {
   const monthList = allMonths.map((month, monthIndex) => {
     return <Dropdown.Item eventKey={monthIndex + 1}>{month}</Dropdown.Item>;
   });
+  const displayMonth = allMonths[month - 1];
   const maxOffset = 10;
   const currentYear = new Date().getFullYear();
   const allYears = [];
@@ -55,12 +56,12 @@ function DateSelector() {
     <Container className="fluid d-flex gap-2 mb-4 justify-content-center">
       <DropdownButton
         id="month"
-        title={allMonths[month - 1]}
+        title={displayMonth}
         onSelect={handleMonth}
         size="lg"
         variant="light"
         name="month"
-        defaultValue={allMonths[month - 1]}
+        defaultValue={displayMonth}
       >
         {monthList}
       </DropdownButton>
