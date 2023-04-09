@@ -6,7 +6,7 @@ const Transaction = mongoose.model("Transaction");
 const { requireUser } = require("../../config/passport");
 const validateTransactionInput = require("../../validations/transactions");
 
-router.get("/user/:userId", async (req, res, next) => {
+router.get("/user/:userId/:year/:month", async (req, res, next) => {
   let user;
   try {
     user = await User.findById(req.params.userId);
@@ -17,9 +17,45 @@ router.get("/user/:userId", async (req, res, next) => {
     return next(error);
   }
   try {
-    const transactions = await Transaction.find({ user: user._id })
-      .sort({ createdAt: -1 })
-      .populate("user", "_id username");
+    const year = parseInt(req.params.year);
+    const month = parseInt(req.params.month);
+    const transactions = await Transaction.aggregate([
+      {
+        $match: {
+          user: user._id,
+          date: {
+            $gte: new Date(year, month - 1, 1),
+            $lt: new Date(year, month, 1),
+          },
+        },
+      },
+      {
+        $sort: { date: -1 },
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "user",
+          foreignField: "_id",
+          as: "user",
+        },
+      },
+      {
+        $unwind: "$user",
+      },
+      {
+        $project: {
+          _id: 1,
+          user: { _id: 1, username: 1 },
+          amount: 1,
+          description: 1,
+          date: 1,
+          company: 1,
+          type: 1,
+          category: 1,
+        },
+      },
+    ]);
 
     const monthlyIncome = transactions
       .filter((transaction) => transaction.type === "Income")
@@ -36,7 +72,6 @@ router.get("/user/:userId", async (req, res, next) => {
     const balance = monthlyIncome - amountSpent - monthlySavings;
 
     const calculations = { monthlyIncome, amountSpent, balance };
-
     return res.json({ calculations, transactions });
   } catch (err) {
     return res.json({ calculations: {}, transactions: [] });

@@ -19,22 +19,22 @@ const allMonths = [
   "December",
 ];
 
-function DateSelector() {
-  const [month, setMonth] = useState(
-    new Date().toLocaleString("en-US", { month: "numeric" })
-  );
+function DateSelector({ month, year, onMonthChange, onYearChange }) {
   const monthList = allMonths.map((month, monthIndex) => {
-    return <Dropdown.Item eventKey={monthIndex + 1}>{month}</Dropdown.Item>;
+    return (
+      <Dropdown.Item key={month} eventKey={monthIndex + 1}>
+        {month}
+      </Dropdown.Item>
+    );
   });
   const displayMonth = allMonths[month - 1];
+
   const maxOffset = 10;
-  const currentYear = new Date().getFullYear();
   const allYears = [];
+  const currentYear = new Date().getFullYear();
   for (let i = 0; i <= maxOffset; i++) {
     allYears.push(currentYear - i);
   }
-  const [year, setYear] = useState(currentYear);
-
   const yearList = allYears.map((year) => {
     return (
       <Dropdown.Item key={year} eventKey={year}>
@@ -42,22 +42,13 @@ function DateSelector() {
       </Dropdown.Item>
     );
   });
-  const handleMonth = (e) => {
-    setMonth(e);
-  };
-  const handleYear = (e) => {
-    setYear(e);
-  };
-  const loggedIn = useSelector((state) => {
-    return !!state.session.user;
-  });
 
   return (
     <Container className="fluid d-flex gap-2 mb-4 justify-content-center">
       <DropdownButton
         id="month"
         title={displayMonth}
-        onSelect={handleMonth}
+        onSelect={onMonthChange}
         size="lg"
         variant="light"
         name="month"
@@ -68,7 +59,7 @@ function DateSelector() {
       <DropdownButton
         id="year"
         title={year ? year : "Year"}
-        onSelect={handleYear}
+        onSelect={onYearChange}
         size="lg"
         variant="light"
         name="year"

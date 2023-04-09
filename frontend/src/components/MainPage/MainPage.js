@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MonthlyIncome from "../MonthlyIncome/MonthlyIncome";
 import Container from "react-bootstrap/Container";
 import TransactionTable from "../TransactionTable/TransactionTable";
@@ -21,15 +21,30 @@ function MainPage() {
   const userCalculations = useSelector(
     (state) => state.transactions.user.calculations
   );
+  const [month, setMonth] = useState(
+    new Date().toLocaleDateString("en-US", { month: "numeric" })
+  );
+  const [year, setYear] = useState(new Date().getFullYear());
+  const handleMonth = (e) => {
+    setMonth(e);
+  };
+  const handleYear = (e) => {
+    setYear(e);
+  };
 
   useEffect(() => {
-    dispatch(fetchUserTransactions(currentUser._id));
+    dispatch(fetchUserTransactions(currentUser._id, year, month));
     return () => dispatch(clearTransactionErrors());
-  }, [currentUser, dispatch]);
+  }, [currentUser, dispatch, year, month]);
 
   return (
     <Container className="pt-4">
-      <DateSelector />
+      <DateSelector
+        month={month}
+        year={year}
+        onMonthChange={handleMonth}
+        onYearChange={handleYear}
+      />
       <h4>Overview</h4>
       <div className="d-flex overflow-auto gap-3 mb-4">
         <MonthlyIncome amount={userCalculations.monthlyIncome} />
