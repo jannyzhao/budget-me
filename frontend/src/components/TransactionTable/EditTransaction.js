@@ -25,7 +25,6 @@ function EditTransaction({ transaction }) {
 
   const handleDate = (e) => {
     setDate(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleDescription = (e) => {
