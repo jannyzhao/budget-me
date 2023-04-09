@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useState } from "react";
 
 const allMonths = [
   "January",
