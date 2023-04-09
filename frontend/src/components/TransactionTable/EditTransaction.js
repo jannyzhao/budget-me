@@ -8,12 +8,15 @@ import { useDispatch } from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
 import { updateTransaction } from "../../store/transactions";
 
-function EditTransaction({ transaction, formatDate }) {
+function EditTransaction({ transaction }) {
   const [show, setShow] = useState(false);
   const [type, setType] = useState(transaction.type);
   const [category, setCategory] = useState(transaction.category);
   const [company, setCompany] = useState(transaction.company);
-  const [date, setDate] = useState(transaction.date);
+  const formattedDate = new Date(transaction.date)
+    .toISOString()
+    .substring(0, 10);
+  const [date, setDate] = useState(formattedDate);
   const [description, setDescription] = useState(transaction.description);
   const [amount, setAmount] = useState(transaction.amount);
   const handleClose = () => setShow(false);
@@ -22,6 +25,7 @@ function EditTransaction({ transaction, formatDate }) {
 
   const handleDate = (e) => {
     setDate(e.target.value);
+    console.log(e.target.value);
   };
 
   const handleDescription = (e) => {
@@ -78,7 +82,7 @@ function EditTransaction({ transaction, formatDate }) {
                 <Form.Control
                   type="date"
                   name="date"
-                  value={date}
+                  value={formattedDate}
                   onChange={handleDate}
                   autoFocus
                 />
