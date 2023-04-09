@@ -38,9 +38,9 @@ export const clearTransactionErrors = (errors) => ({
   errors,
 });
 
-export const fetchUserTransactions = (id) => async (dispatch) => {
+export const fetchUserTransactions = (id, year, month) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`/api/transactions/user/${id}`);
+    const res = await jwtFetch(`/api/transactions/user/${id}/${year}/${month}`);
     const json = await res.json();
     dispatch(receiveUserTransactions(json));
   } catch (err) {
