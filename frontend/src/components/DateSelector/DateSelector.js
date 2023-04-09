@@ -4,22 +4,40 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
 
+const allMonths = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 function DateSelector() {
   const [month, setMonth] = useState(
-    new Date().toLocaleString("en-US", { month: "long" })
+    new Date().toLocaleString("en-US", { month: "numeric" })
   );
-  let maxOffset = 10;
-  let currentYear = new Date().getFullYear();
-  let allYears = [];
-  for (let x = 0; x <= maxOffset; x++) {
-    allYears.push(currentYear - x);
+  const monthList = allMonths.map((month, monthIndex) => {
+    return <Dropdown.Item eventKey={monthIndex + 1}>{month}</Dropdown.Item>;
+  });
+  const maxOffset = 10;
+  const currentYear = new Date().getFullYear();
+  const allYears = [];
+  for (let i = 0; i <= maxOffset; i++) {
+    allYears.push(currentYear - i);
   }
   const [year, setYear] = useState(currentYear);
 
-  const yearList = allYears.map((x) => {
+  const yearList = allYears.map((year) => {
     return (
-      <Dropdown.Item key={x} eventKey={x}>
-        {x}
+      <Dropdown.Item key={year} eventKey={year}>
+        {year}
       </Dropdown.Item>
     );
   });
@@ -37,25 +55,14 @@ function DateSelector() {
     <Container className="fluid d-flex gap-2 mb-4 justify-content-center">
       <DropdownButton
         id="month"
-        title={month ? month : "Month"}
+        title={allMonths[month - 1]}
         onSelect={handleMonth}
         size="lg"
         variant="light"
         name="month"
-        defaultValue={month}
+        defaultValue={allMonths[month - 1]}
       >
-        <Dropdown.Item eventKey="January">January</Dropdown.Item>
-        <Dropdown.Item eventKey="February">February</Dropdown.Item>
-        <Dropdown.Item eventKey="March">March</Dropdown.Item>
-        <Dropdown.Item eventKey="April">April</Dropdown.Item>
-        <Dropdown.Item eventKey="May">May</Dropdown.Item>
-        <Dropdown.Item eventKey="June">June</Dropdown.Item>
-        <Dropdown.Item eventKey="July">July</Dropdown.Item>
-        <Dropdown.Item eventKey="August">August</Dropdown.Item>
-        <Dropdown.Item eventKey="September">September</Dropdown.Item>
-        <Dropdown.Item eventKey="October">October</Dropdown.Item>
-        <Dropdown.Item eventKey="November">November</Dropdown.Item>
-        <Dropdown.Item eventKey="December">December</Dropdown.Item>
+        {monthList}
       </DropdownButton>
       <DropdownButton
         id="year"
