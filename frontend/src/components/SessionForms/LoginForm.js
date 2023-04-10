@@ -70,7 +70,7 @@ function LoginForm() {
           ) : null}
         </Form.Group>
 
-        <Button type="submit" disabled={!email || !password} variant="success">
+        <Button type="submit" disabled={!email || !password} variant="success" style={{marginRight: "10px"}}>
           Login
         </Button>
         <Button type="submit" onClick={demoLogin} variant="outline-success">

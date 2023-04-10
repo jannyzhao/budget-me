@@ -36,11 +36,11 @@ function EditTransaction({ transaction }) {
   };
 
   const handleType = (e) => {
-    setType(e.target.value);
+    setType(e);
   };
 
   const handleCategory = (e) => {
-    setCategory(e.target.value);
+    setCategory(e);
   };
 
   const handleAmount = (e) => {
@@ -64,7 +64,7 @@ function EditTransaction({ transaction }) {
 
   return (
     <>
-      <Button variant="outline-primary" onClick={handleShow}>
+      <Button variant="outline-info" onClick={handleShow}>
         Edit
       </Button>
 

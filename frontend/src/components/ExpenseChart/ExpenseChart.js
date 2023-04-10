@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import Card from "react-bootstrap/Card";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
@@ -12,7 +12,6 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index,
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -50,16 +49,15 @@ function formatData(userTransactions) {
   return data;
 }
 
-
 function ExpenseChart({ userTransactions }) {
   const data = formatData(userTransactions);
   return (
-    <Card
-    style={{ width: "15rem" }}
-    border="secondary"
-    className="text-center"
-    >
-        <ResponsiveContainer>
+    <div>
+      <Card
+        style={{ width: "15rem" }}
+        border="secondary"
+        className="text-center"
+      >
         <Card.Body>
           <PieChart width={250} height={150}>
             <Pie
@@ -82,8 +80,8 @@ function ExpenseChart({ userTransactions }) {
             <Tooltip />
           </PieChart>
         </Card.Body>
-        </ResponsiveContainer>
       </Card>
+    </div>
   );
 }
 
