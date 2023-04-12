@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MonthlyIncome from "../MonthlyIncome/MonthlyIncome";
 import Container from "react-bootstrap/Container";
+import AddTransaction from "../TransactionTable/AddTransaction";
 import TransactionTable from "../TransactionTable/TransactionTable";
 import DateSelector from "../DateSelector/DateSelector";
 import AmountSpent from "../AmountSpent/AmountSpent";
@@ -56,7 +57,10 @@ function MainPage() {
         <ExpenseChart userTransactions={userTransactions} />
       </div>
 
-      <h5>Transactions</h5>
+      <div className="d-flex justify-content-between mb-2">
+        <h5 className="mt-2">Transactions</h5>
+        <AddTransaction />
+      </div>
       <TransactionTable transactions={userTransactions} />
     </Container>
   );
