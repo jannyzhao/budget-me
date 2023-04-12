@@ -1,4 +1,3 @@
-import Container from "react-bootstrap/Container";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 
@@ -42,13 +41,13 @@ function DateSelector({ month, year, onMonthChange, onYearChange }) {
   });
 
   return (
-    <Container className="fluid d-flex gap-2 mb-4 justify-content-center">
+    <div className="d-flex gap-2">
       <DropdownButton
         id="month"
         title={displayMonth}
         onSelect={onMonthChange}
-        size="lg"
-        variant="light"
+        size="md"
+        variant="outline-primary"
         name="month"
         defaultValue={displayMonth}
       >
@@ -58,14 +57,14 @@ function DateSelector({ month, year, onMonthChange, onYearChange }) {
         id="year"
         title={year ? year : "Year"}
         onSelect={onYearChange}
-        size="lg"
-        variant="light"
+        size="md"
+        variant="outline-primary"
         name="year"
         defaultValue={year}
       >
         {yearList}
       </DropdownButton>
-    </Container>
+    </div>
   );
 }
 

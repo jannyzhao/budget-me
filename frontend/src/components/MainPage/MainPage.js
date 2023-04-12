@@ -39,23 +39,24 @@ function MainPage() {
 
   return (
     <Container className="pt-4">
-      <DateSelector
-        month={month}
-        year={year}
-        onMonthChange={handleMonth}
-        onYearChange={handleYear}
-      />
-      <h4>Overview</h4>
+      <div className="d-flex justify-content-between mb-4">
+        <h4>Welcome, {currentUser.username}!</h4>
+        <DateSelector
+          month={month}
+          year={year}
+          onMonthChange={handleMonth}
+          onYearChange={handleYear}
+        />
+      </div>
+      <h5>Overview</h5>
       <div className="d-flex overflow-auto gap-3 mb-4">
         <MonthlyIncome amount={userCalculations.monthlyIncome} />
         <AmountSpent amount={userCalculations.amountSpent} />
         <Balance amount={userCalculations.balance} />
-      </div>
-      <h4>Summary</h4>
-      <div className="d-flex overflow-auto gap-3 mb-4">
         <ExpenseChart userTransactions={userTransactions} />
       </div>
-      <h4>Transactions</h4>
+
+      <h5>Transactions</h5>
       <TransactionTable transactions={userTransactions} />
     </Container>
   );
